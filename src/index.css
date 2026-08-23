@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 /* ============================================
    EVOLUTION PORTFOLIO — S1 VISUAL FOUNDATION
@@ -329,12 +329,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-muted);
-}
-
-/* -------------------------------------------
-   12. LEGACY (preserved per S0 — remove in S2)
-   ------------------------------------------- */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
 }
