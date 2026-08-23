@@ -2,7 +2,7 @@
   return (
     <div className="content-frame pb-section text-center">
       <a
-        href="https://github.com/raghavendrashivam474"
+        href="href="https://arynta.com""
         target="_blank"
         rel="noopener noreferrer"
         className="link-quiet text-meta interactive"
