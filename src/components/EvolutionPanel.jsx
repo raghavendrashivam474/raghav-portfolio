@@ -12,12 +12,15 @@ export default function EvolutionPanel({ isOpen, onClose }) {
     }
   }, [isOpen])
 
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Escape' && isOpen) {
-      e.stopPropagation()
-      onClose()
-    }
-  }, [isOpen, onClose])
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        e.stopPropagation()
+        onClose()
+      }
+    },
+    [isOpen, onClose]
+  )
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
@@ -28,40 +31,50 @@ export default function EvolutionPanel({ isOpen, onClose }) {
     if (isOpen) {
       const original = document.body.style.overflow
       document.body.style.overflow = 'hidden'
-      return () => { document.body.style.overflow = original }
+      return () => {
+        document.body.style.overflow = original
+      }
     }
   }, [isOpen])
 
   if (!isOpen) return null
 
+  // Enhanced metadata per stage
+  const stageTags = {
+    'making-things': ['Curiosity Driven', 'Rapid Prototypes', 'Trial & Error'],
+    'understanding-how-they-work': ['Internal Mechanics', 'Debugging', 'Core Principles'],
+    'designing-systems': ['Component Boundaries', 'Trade-off Analysis', 'Modular Architecture'],
+    'thinking-in-products': ['User Value', 'Product Fit', 'Problem Framing'],
+    'building-with-intent': ['Deliberate Code', 'Evidence First', 'Long-term Resilience']
+  }
+
   return (
     <>
+      {/* Backdrop */}
       <div
-        className="fixed inset-0 z-50 bg-obsidian/80 backdrop-blur-xl"
+        className="fixed inset-0 z-50 bg-obsidian/85 backdrop-blur-xl transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
 
+      {/* Full-Height Exploration Overlay Frame */}
       <section
         ref={panelRef}
         id="evolution-panel"
         role="dialog"
         aria-modal="true"
         aria-label="Builder evolution stages"
-        className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-1.5rem)] max-w-3xl max-h-[88dvh] overflow-hidden rounded-xl border border-border/80 bg-graphite/95 shadow-[0_0_0_1px_rgba(200,126,74,0.08),0_24px_80px_rgba(0,0,0,0.55)] max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:max-h-[90dvh]"
+        className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-1.5rem)] max-w-5xl h-[90dvh] flex flex-col rounded-xl border border-border/80 bg-graphite/95 shadow-[0_0_0_1px_rgba(200,126,74,0.1),0_24px_90px_rgba(0,0,0,0.65)] max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:h-[92dvh] overflow-hidden"
       >
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-copper to-transparent" />
+        {/* Top Accent Line */}
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-copper to-transparent shrink-0" />
 
-        <div className="relative p-6 sm:p-8 overflow-y-auto max-h-[calc(88dvh-2px)]">
-          <div
-            className="pointer-events-none absolute -top-20 -left-10 h-52 w-52 rounded-full bg-copper/10 blur-3xl"
-            aria-hidden="true"
-          />
-
-          <div className="relative flex items-start justify-between gap-4 mb-8">
+        {/* 1. FIXED HEADER */}
+        <header className="shrink-0 p-6 sm:p-8 pb-5 border-b border-border/60 bg-graphite/90 relative z-10">
+          <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-copper/40 bg-copper/10 text-copper text-sm">
+              <div className="inline-flex items-center gap-2 mb-2">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-md border border-copper/40 bg-copper/10 text-copper text-xs">
                   ◇
                 </span>
                 <span className="text-micro font-mono tracking-[0.22em] uppercase text-copper">
@@ -69,10 +82,11 @@ export default function EvolutionPanel({ isOpen, onClose }) {
                 </span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-semibold text-ivory tracking-tight">
-                Builder Progression
+                Builder Progression & Mental Models
               </h3>
-              <p className="mt-2 text-sm sm:text-base text-stone leading-relaxed max-w-xl">
-                {evolutionMeta.framing}
+              <p className="mt-1 text-sm sm:text-base text-stone leading-relaxed">
+                {evolutionMeta.framing}{' '}
+                <span className="text-ash font-mono">(A continuous shift in perspective)</span>
               </p>
             </div>
 
@@ -86,47 +100,79 @@ export default function EvolutionPanel({ isOpen, onClose }) {
               ×
             </button>
           </div>
+        </header>
 
-          {/* Vertical timeline */}
-          <div className="relative pl-2 sm:pl-3">
+        {/* 2. SCROLLABLE CONTENT BODY */}
+        <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 relative">
+          {/* Ambient Glow */}
+          <div
+            className="pointer-events-none absolute -top-20 -left-10 h-64 w-64 rounded-full bg-copper/10 blur-3xl"
+            aria-hidden="true"
+          />
+
+          {/* Vertical Timeline Container */}
+          <div className="relative pl-2 sm:pl-4 space-y-6">
+            {/* Timeline Vertical Axis Line */}
             <div
-              className="absolute left-[21px] sm:left-[25px] top-3 bottom-3 w-px bg-gradient-to-b from-copper/70 via-border to-copper/20"
+              className="absolute left-[19px] sm:left-[27px] top-4 bottom-4 w-px bg-gradient-to-b from-copper/80 via-border to-copper/30"
               aria-hidden="true"
             />
 
-            <div className="space-y-3">
-              {evolutionStages.map((stage, index) => (
-                <div key={stage.id} className="relative flex gap-4 sm:gap-5">
-                  <div className="relative z-10 shrink-0 mt-4">
-                    <div className="h-8 w-8 sm:h-9 sm:w-9 rounded-full border border-copper/50 bg-graphite flex items-center justify-center shadow-[0_0_20px_rgba(200,126,74,0.15)]">
-                      <span className="text-[11px] font-mono text-copper">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 rounded-xl border border-border/70 bg-gradient-to-br from-slate/55 to-obsidian/35 p-4 sm:p-5 transition-all duration-200 hover:border-copper/40">
-                    <h4 className="text-base sm:text-lg font-semibold text-ivory tracking-tight mb-1.5">
-                      {stage.title}
-                    </h4>
-                    <p className="text-sm text-stone leading-relaxed">
-                      {stage.description}
-                    </p>
+            {evolutionStages.map((stage, index) => (
+              <div key={stage.id} className="relative flex items-start gap-4 sm:gap-6 group">
+                {/* Step Circle Node */}
+                <div className="relative z-10 shrink-0 mt-1">
+                  <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-full border border-copper/60 bg-graphite flex items-center justify-center shadow-[0_0_20px_rgba(200,126,74,0.15)] group-hover:border-copper group-hover:scale-105 transition-all">
+                    <span className="text-xs font-mono font-semibold text-copper">
+                      0{index + 1}
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="mt-7 pt-4 border-t border-border/50 flex items-center justify-between">
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-ash">
-              Mental models
-            </span>
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-copper/80">
-              {evolutionMeta.direction}
-            </span>
+                {/* Content Card */}
+                <div className="flex-1 rounded-xl border border-border/70 bg-gradient-to-br from-slate/60 to-obsidian/40 p-5 sm:p-6 transition-all duration-200 hover:border-copper/40 hover:shadow-[0_0_0_1px_rgba(200,126,74,0.12)] space-y-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2">
+                    <h4 className="text-lg sm:text-xl font-semibold text-ivory tracking-tight group-hover:text-oxide transition-colors">
+                      {stage.title}
+                    </h4>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-copper/80 bg-copper/10 px-2 py-0.5 rounded border border-copper/30">
+                      Stage 0{index + 1}
+                    </span>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-stone/90 leading-relaxed font-sans">
+                    {stage.description}
+                  </p>
+
+                  {/* Stage Focus Tags */}
+                  {stageTags[stage.id] && (
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {stageTags[stage.id].map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-obsidian/60 text-ash border border-border/50"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+
+        {/* 3. FIXED FOOTER */}
+        <footer className="shrink-0 px-6 py-4 border-t border-border/60 bg-graphite/90 flex items-center justify-between text-xs font-mono">
+          <div className="flex items-center gap-2 text-stone">
+            <span className="w-2 h-2 rounded-full bg-copper animate-pulse" />
+            <span>Continuous Iteration Paradigm</span>
+          </div>
+          <span className="text-copper/90 font-medium uppercase tracking-wider">
+            {evolutionMeta.direction}
+          </span>
+        </footer>
       </section>
     </>
   )
