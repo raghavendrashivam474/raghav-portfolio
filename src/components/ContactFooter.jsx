@@ -6,7 +6,7 @@
       ariaLabel: 'Send email to raghavendrashivam474@gmail.com',
       icon: (
         <svg
-          className="w-4 h-4"
+          className="w-5 h-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -26,7 +26,7 @@
       ariaLabel: 'Visit LinkedIn profile (opens in a new tab)',
       icon: (
         <svg
-          className="w-4 h-4"
+          className="w-5 h-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -47,7 +47,7 @@
       ariaLabel: 'Visit GitHub profile (opens in a new tab)',
       icon: (
         <svg
-          className="w-4 h-4"
+          className="w-5 h-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -67,7 +67,7 @@
       ariaLabel: 'Visit Instagram profile (opens in a new tab)',
       icon: (
         <svg
-          className="w-4 h-4"
+          className="w-5 h-5"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -85,11 +85,11 @@
   ]
 
   return (
-    <footer className="mt-20 sm:mt-24 mb-12 text-center">
-      <p className="text-micro text-stone/70 tracking-widest uppercase mb-4 select-none">
+    <footer className="text-center pt-1">
+      <p className="text-xs sm:text-sm text-stone/50 tracking-[0.25em] lowercase mb-6 select-none font-mono">
         let&apos;s build something.
       </p>
-      <div className="flex items-center justify-center gap-6">
+      <div className="flex items-center justify-center gap-8 sm:gap-10">
         {contactLinks.map((link) => (
           <a
             key={link.name}
@@ -97,9 +97,9 @@
             target={link.href.startsWith('mailto:') ? undefined : '_blank'}
             rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
             aria-label={link.ariaLabel}
-            className="text-stone hover:text-ivory focus-visible:text-oxide transition-colors duration-200 p-1 group flex items-center gap-1.5"
+            className="text-stone/60 hover:text-ivory focus-visible:text-oxide transition-colors duration-200 p-1.5 group flex items-center justify-center rounded-sm hover:bg-surface/40"
           >
-            <span className="transition-transform duration-150 group-hover:scale-110">
+            <span className="transition-transform duration-150 group-hover:scale-110 group-hover:text-oxide">
               {link.icon}
             </span>
           </a>
