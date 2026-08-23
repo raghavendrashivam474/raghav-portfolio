@@ -4,13 +4,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  // Tailwind v4 uses CSS-first configuration via @theme in src/index.css.
+  // This file is retained for editor/tooling compatibility only.
+  // Do not add colors here — use @theme in src/index.css instead.
   theme: {
-    extend: {
-      colors: {
-        dark: '#0a0a0a',
-        accent: '#00ff88',
-        dim: '#1a1a1a',
-      },
-    },
+    extend: {},
   },
 }

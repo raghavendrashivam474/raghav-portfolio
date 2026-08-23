@@ -1,30 +1,339 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+﻿@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ============================================
+   EVOLUTION PORTFOLIO — S1 VISUAL FOUNDATION
+   Minimal space → maximum curiosity.
+
+   Tailwind v4 CSS-first configuration.
+   All tokens available as utility classes:
+     bg-obsidian, text-ivory, border-ash, etc.
+   ============================================ */
+
+/* -------------------------------------------
+   1. DESIGN TOKENS
+   ------------------------------------------- */
+@theme {
+  /* Locked Color Palette */
+  --color-obsidian: #0D0E0C;
+  --color-ivory: #E8E3D8;
+  --color-stone: #8D8A82;
+  --color-oxide: #B85C38;
+  --color-copper: #D17A52;
+  --color-graphite: #171916;
+  --color-ash: #2A2C28;
+
+  /* Semantic Colors */
+  --color-background: #0D0E0C;
+  --color-surface: #171916;
+  --color-surface-elevated: #1E201C;
+  --color-text-primary: #E8E3D8;
+  --color-text-secondary: #8D8A82;
+  --color-text-muted: #5C5A55;
+  --color-border: #2A2C28;
+  --color-border-subtle: #1E201C;
+  --color-accent: #B85C38;
+  --color-accent-hover: #D17A52;
+
+  /* Typography */
+  --font-sans: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", "Cascadia Code",
+    ui-monospace, monospace;
+
+  --text-display: 3.5rem;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-heading: 1.75rem;
+  --text-heading--line-height: 1.2;
+  --text-heading--letter-spacing: -0.02em;
+
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: -0.01em;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.5;
+  --text-meta--letter-spacing: 0.02em;
+
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.08em;
+
+  /* Spacing Scale */
+  --spacing-section: 8rem;
+  --spacing-block: 4rem;
+  --spacing-element: 2rem;
+  --spacing-inline: 1.25rem;
+  --spacing-tight: 0.5rem;
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* Transitions */
+  --ease-quiet: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-quiet: 200ms;
+  --duration-deliberate: 350ms;
 }
 
-body {
-  background: #0a0a0a;
-  color: #fafafa;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.6;
+/* -------------------------------------------
+   2. BASE RESET & GLOBALS
+   ------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
 }
 
-::selection {
-  background: #34d399;
-  color: #000;
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  min-height: 100dvh;
+  overflow-x: hidden;
 }
 
-/* Typewriter cursor blink */
+/* -------------------------------------------
+   3. SELECTION (replaces emerald)
+   ------------------------------------------- */
+::selection {
+  background-color: rgba(184, 92, 56, 0.3);
+  color: var(--color-ivory);
+}
+
+::-moz-selection {
+  background-color: rgba(184, 92, 56, 0.3);
+  color: var(--color-ivory);
+}
+
+/* -------------------------------------------
+   4. FOCUS & ACCESSIBILITY
+   ------------------------------------------- */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------
+   5. TYPOGRAPHY UTILITIES
+   ------------------------------------------- */
+.text-display {
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.text-heading {
+  font-size: var(--text-heading);
+  line-height: var(--text-heading--line-height);
+  letter-spacing: var(--text-heading--letter-spacing);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.text-title {
+  font-size: var(--text-title);
+  line-height: var(--text-title--line-height);
+  letter-spacing: var(--text-title--letter-spacing);
+  font-weight: 450;
+  color: var(--color-text-primary);
+}
+
+.text-body {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-text-primary);
+}
+
+.text-meta {
+  font-size: var(--text-meta);
+  line-height: var(--text-meta--line-height);
+  letter-spacing: var(--text-meta--letter-spacing);
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+.text-micro {
+  font-size: var(--text-micro);
+  line-height: var(--text-micro--line-height);
+  letter-spacing: var(--text-micro--letter-spacing);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------
+   6. SURFACES & STRUCTURE
+   ------------------------------------------- */
+.surface {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.surface-elevated {
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--spacing-block) 0;
+}
+
+/* -------------------------------------------
+   7. INTERACTION STATES
+   ------------------------------------------- */
+.interactive {
+  transition: color var(--duration-quiet) var(--ease-quiet),
+    background-color var(--duration-quiet) var(--ease-quiet),
+    border-color var(--duration-quiet) var(--ease-quiet),
+    opacity var(--duration-quiet) var(--ease-quiet);
+  cursor: pointer;
+}
+
+.interactive:hover {
+  color: var(--color-accent);
+}
+
+.interactive:active {
+  color: var(--color-accent-hover);
+}
+
+.link-quiet {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-quiet) var(--ease-quiet);
+}
+
+.link-quiet:hover {
+  color: var(--color-accent);
+}
+
+.link-quiet:active {
+  color: var(--color-accent-hover);
+}
+
+.link-accent {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: border-color var(--duration-quiet) var(--ease-quiet),
+    color var(--duration-quiet) var(--ease-quiet);
+}
+
+.link-accent:hover {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* -------------------------------------------
+   8. LAYOUT PRIMITIVES
+   ------------------------------------------- */
+.viewport-container {
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.content-frame {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: var(--spacing-element);
+}
+
+/* -------------------------------------------
+   9. RESPONSIVE
+   ------------------------------------------- */
+@media (max-width: 1024px) {
+  :root {
+    --text-display: 2.75rem;
+    --text-heading: 1.5rem;
+    --spacing-section: 6rem;
+    --spacing-block: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --text-display: 2rem;
+    --text-heading: 1.25rem;
+    --text-title: 1.125rem;
+    --spacing-section: 4rem;
+    --spacing-block: 2.5rem;
+    --spacing-element: 1.25rem;
+  }
+
+  .content-frame {
+    padding-inline: 1rem;
+  }
+}
+
+/* -------------------------------------------
+   10. REDUCED MOTION
+   ------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------
+   11. SCROLLBAR
+   ------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* -------------------------------------------
+   12. LEGACY (preserved per S0 — remove in S2)
+   ------------------------------------------- */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
