@@ -104,8 +104,6 @@ App.jsx
 └── MoreWorkPanel
 Overlay Model
 Interactive depth layers use a centralized overlay state:
-```
-```text
 
 null
 │
@@ -124,6 +122,7 @@ Escape closes the panel
 focus is restored to the originating trigger
 This keeps the interaction model predictable and accessible.
 ```
+
 🧠 Design Principles
 ```
 Minimal surface
@@ -201,8 +200,6 @@ Dev-Vault
 Aryntra Backtrace
 GradeFlow
 The project catalogue is data-driven through:
-```
-```text
 
 src/data/projects.js
 Project metadata should always be verified against the actual project implementation.
