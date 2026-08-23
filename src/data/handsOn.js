@@ -1,27 +1,29 @@
-﻿// S4 Hands-on data layer
-// Source of truth: actual project implementations in projects.js
-// No expertise claims. No proficiency ratings. Evidence only.
+﻿// src/data/handsOn.js
+// S6 Hands-on data layer: communicates range, paradigms, and practical exposure.
+// Source of truth: verified project implementations and core engineering work.
+// No proficiency bars, percentages, or expertise claims.
 
 export const handsOn = [
   {
-    category: "Frontend",
+    category: "Languages",
     technologies: [
-      "React",
-      "Next.js",
+      "C++",
+      "Python",
+      "JavaScript",
       "TypeScript",
-      "Vite",
-      "Tailwind CSS",
-      "Vanilla JavaScript",
-      "Flutter Web"
+      "Go"
     ]
   },
   {
-    category: "Backend",
+    category: "Web & Applications",
     technologies: [
-      "Python",
+      "React",
+      "Next.js",
+      "Vite",
       "FastAPI",
       "Node.js",
-      "Go"
+      "Express",
+      "Tailwind CSS"
     ]
   },
   {
@@ -39,34 +41,36 @@ export const handsOn = [
     technologies: [
       "Ollama",
       "OpenAI SDK",
-      "LLM Integration",
-      "RAG"
+      "RAG",
+      "Embeddings",
+      "LLM Integration"
     ]
   },
   {
-    category: "Systems",
+    category: "Systems & Tooling",
     technologies: [
       "Go CLI",
       "Terminal Architecture",
-      "JSON Output Engine"
+      "JSON Output Engine",
+      "Modular Architecture"
     ]
   }
-];
+]
 
-// Internal audit trail — maps technologies to project evidence.
-// Not rendered in UI. Exists so metadata stays verifiable.
+// Internal audit mapping to project evidence
 export const handsOnEvidence = {
+  "C++": ["System Foundations"],
+  "Python": ["01", "OS-03"],
+  "JavaScript": ["OS-02"],
+  "TypeScript": ["01", "03"],
+  "Go": ["02"],
   "React": ["01", "03", "OS-04"],
   "Next.js": ["01"],
-  "TypeScript": ["01", "03"],
   "Vite": ["03"],
-  "Tailwind CSS": ["01", "03"],
-  "Vanilla JavaScript": ["OS-02"],
-  "Flutter Web": ["OS-01"],
-  "Python": ["01", "OS-03"],
   "FastAPI": ["01", "03"],
   "Node.js": ["OS-01"],
-  "Go": ["02"],
+  "Express": ["OS-01"],
+  "Tailwind CSS": ["01", "03"],
   "PostgreSQL": ["01"],
   "SQLite": ["03"],
   "IndexedDB": ["OS-02"],
@@ -74,9 +78,11 @@ export const handsOnEvidence = {
   "SQLAlchemy": ["01"],
   "Ollama": ["01", "03"],
   "OpenAI SDK": ["01"],
-  "LLM Integration": ["OS-03"],
   "RAG": ["01"],
+  "Embeddings": ["01"],
+  "LLM Integration": ["OS-03"],
   "Go CLI": ["02"],
   "Terminal Architecture": ["02"],
-  "JSON Output Engine": ["02"]
-};
+  "JSON Output Engine": ["02"],
+  "Modular Architecture": ["01", "03"]
+}
