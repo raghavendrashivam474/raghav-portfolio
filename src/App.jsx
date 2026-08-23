@@ -1,4 +1,4 @@
-﻿import { useState, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import PortfolioShell from './components/PortfolioShell'
 import HandsOnTrigger from './components/HandsOnTrigger'
 import EvolutionTrigger from './components/EvolutionTrigger'
@@ -45,7 +45,7 @@ function App() {
       <main className={`w-full max-w-2xl px-6 py-12 flex flex-col items-center justify-center text-center space-y-10 sm:space-y-12 transition-all duration-300 ease-out ${isAnyOpen ? 'blur-sm opacity-30 select-none' : ''}`}>
         <MinimalHero />
         <SelectedWork onOpenMoreWork={handleOpenMoreWork} />
-        <div className="w-full flex flex-col items-center justify-center gap-7 pt-8 border-t border-ash/30">
+        <div className="w-full flex flex-col items-center justify-center gap-7 pt-8 border-t border-border/40">
           <AryntraLink />
           <ContactFooter />
         </div>
