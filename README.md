@@ -1,168 +1,320 @@
-# 🧬 Evolution Portfolio
+﻿# Raghav — Builder Portfolio
 
-> A narrative-driven developer portfolio built as a staged system evolution.
+> A minimal personal portfolio exploring what I build, what I work with, and how I evolve as a builder.
 
-Evolution Portfolio transforms a traditional portfolio into an interactive **state machine experience**.  
-Instead of scrolling through static sections, visitors witness a boot sequence that unlocks projects and system modules progressively.
-
-Live Site → **https://raghav.live/**
+**Live Site → https://raghav.live/**
 
 ---
 
-## 🚀 Concept
+## 🧭 Concept
 
-The portfolio is structured as a simulated operating system:
+This portfolio is intentionally minimal.
 
-1. **Human** — Identity layer (Engineering Student · Product Builder · Founder)
-2. **SystemBoot** — Terminal-style initialization sequence
-3. **Transformation** — Active missions (projects)
-4. **Humanoid** — Core modules + Current operations
-5. **Contact** — Transmission endpoint
+Instead of presenting a conventional résumé-style experience with long sections, timelines, skill ratings, and exhaustive project archives, it creates a small surface with optional layers of depth.
 
-The experience is scroll-triggered and animation-synchronized.
+The core idea is:
 
----
+> **Minimal space → maximum curiosity.**
 
-## 🏗 Architecture
+The first viewport communicates three things quickly:
 
-    App.jsx
-    │
-    ├── Section.jsx        → Animation wrapper + visibility gating
-    ├── Human.jsx          → Hero / identity layer
-    ├── SystemBoot.jsx     → Typewriter boot sequence (IntersectionObserver)
-    ├── Transformation.jsx → Mission cards (projects)
-    ├── Humanoid.jsx       → Core modules + Current operations
-    └── Typewriter.jsx     → Text animation primitive
+- **Who I am**
+- **What I build**
+- **How I think**
 
-### State Flow
-
-- Hero and Boot load immediately.
-- Boot completion triggers:
-  - Projects reveal (~800ms delay)
-  - Core modules reveal (~1600ms delay)
-- Controlled via state in App.jsx.
+Additional information is progressively revealed through small interactive controls.
 
 ---
 
-## 🧠 Key Implementation Details
+## ✦ Experience
 
-### 1️⃣ Section Gating System
+The portfolio is organized around a few intentionally restrained interaction points:
 
-Each section is wrapped in a `Section` component:
+### ◈ Hands-on
 
-- opacity / translate / blur transitions
-- smooth cubic-bezier animation
-- pointer-events disabled until visible
-- consistent reveal timing
+> Things I've actually built with. Not an expertise claim.
 
-This keeps animations unified across the app.
+Shows the range of programming languages, frameworks, data technologies, AI tools, systems technologies, and development tooling I've worked with.
 
----
-
-### 2️⃣ Event-Driven Boot Sequence
-
-`SystemBoot.jsx`:
-
-- Uses `IntersectionObserver`
-- Triggers only when 30% visible
-- Runs line-by-line Typewriter animation
-- Calls `onComplete()` after final line
-- Unlocks next sections via state update
-
-No arbitrary timeouts driving flow — animation completion controls progression.
+The emphasis is on **practical exposure and variation**, not proficiency ratings.
 
 ---
 
-### 3️⃣ Data-Driven Content
+### Selected Work
 
-Project and system data are separated from presentation:
-src/data/
-├── projects.js
-├── modules.js
-├── operations.js
-└── bootSequence.js
+The primary portfolio surface highlights three current systems:
+
+- **Aryntra Anveksha**
+- **Aryntra Aayaam**
+- **Aryntra Tarka**
+
+These represent the work currently given the most visual attention.
+
+Additional projects remain discoverable through:
+
+> **+ more work**
+
+which opens a compact project explorer without adding a large archive section to the main page.
+
+---
+
+### ◇ Builder Evolution
+
+A conceptual progression describing how my approach to building has evolved:
+
+```text
+Making things
+      ↓
+Understanding how they work
+      ↓
+Designing systems
+      ↓
+Thinking in products
+      ↓
+Building with intent
+This is deliberately not a résumé timeline.
+
+There are no dates, job titles, proficiency levels, or fabricated milestones.
+
+It represents a direction of thinking rather than a completed destination.
+
+🏗 Architecture
+The current application is intentionally small and component-driven.
 
 text
 
+App.jsx
+│
+├── PortfolioShell
+│
+├── HandsOnTrigger
+│   └── HandsOnPanel
+│
+├── EvolutionTrigger
+│   └── EvolutionPanel
+│
+├── main
+│   ├── MinimalHero
+│   ├── SelectedWork
+│   ├── AryntraLink
+│   └── ContactFooter
+│
+└── MoreWorkPanel
+Overlay Model
+Interactive depth layers use a centralized overlay state:
 
-This allows easy narrative updates without touching UI logic.
+text
 
----
+null
+│
+├── tools
+├── evolution
+└── moreWork
+Only one overlay is active at a time.
 
-## 🛠 Tech Stack
+When an overlay opens:
 
-### UI Engine
-- React (Vite)
-- TypeScript-ready structure
-- Tailwind CSS + inline styling
+background content becomes visually subdued
+backdrop blur is applied
+body scrolling is locked where appropriate
+focus is moved into the active panel
+Escape closes the panel
+focus is restored to the originating trigger
+This keeps the interaction model predictable and accessible.
 
-### Processing Layer
-- Node.js ecosystem
+🧠 Design Principles
+Minimal surface
+The main page should remain quiet.
 
-### Design
-- Radial gradient hero
-- Inline SVG noise texture
-- Glow layers
-- Monospace system aesthetic
+Additional information should be discovered rather than forced upon the visitor.
 
----
+Evidence over claims
+Technology metadata should represent things that have actually been built with.
 
-## 📦 Projects Featured
+Actual repository → current implementation → portfolio metadata
 
-- **Syaahi** — Emotional writing platform
-- **GradeFlow** — Academic analytics system
-- **VibeFlow** — Music intelligence platform
-- **SchoolFlow OS** — Institutional operating system vision
+Never inflate a technology stack or claim expertise without evidence.
 
----
+Depth on demand
+The homepage should establish credibility quickly while allowing curious visitors to explore further.
 
-## 🖥 Local Development
+Selected work over exhaustive work
+The strongest current projects receive primary attention.
 
-Clone the repo:
+Older and secondary projects remain available without dominating the first viewport.
 
-```bash
-git clone https://github.com/your-username/evolution-portfolio.git
+No artificial narrative
+The old simulated operating-system / boot-sequence concept has been retired.
+
+The portfolio no longer forces visitors through:
+
+boot sequences
+sequential unlocks
+terminal animations
+excessive scrolling
+narrative gatekeepers
+🛠 Tech Stack
+Application
+React
+Vite
+JavaScript / JSX
+Styling
+Tailwind CSS
+Custom CSS where required
+Inline SVG
+Architecture
+Component-driven React architecture
+Data-driven content modules
+Local state for isolated interactions
+Centralized overlay coordination
+Deployment
+Vercel
+Production domain: https://raghav.live/
+No backend or external CMS is currently required.
+
+📦 Selected Work
+Aryntra Anveksha
+Aryntra system focused on its current product direction and implementation.
+
+Aryntra Aayaam
+Aryntra system exploring desktop/system-oriented capabilities.
+
+Aryntra Tarka
+Aryntra AI-oriented system and local AI infrastructure work.
+
+🗂 Other Work
+Additional projects are intentionally kept behind the + more work interaction.
+
+Current portfolio data includes projects such as:
+
+Syaahi
+Dev-Vault
+Aryntra Backtrace
+GradeFlow
+The project catalogue is data-driven through:
+
+text
+
+src/data/projects.js
+Project metadata should always be verified against the actual project implementation.
+
+📁 Project Structure
+text
+
+src/
+├── components/
+│   ├── HandsOnPanel.jsx
+│   ├── HandsOnTrigger.jsx
+│   ├── EvolutionPanel.jsx
+│   ├── EvolutionTrigger.jsx
+│   ├── MoreWorkPanel.jsx
+│   ├── SelectedWork.jsx
+│   ├── MinimalHero.jsx
+│   ├── AryntraLink.jsx
+│   └── ContactFooter.jsx
+│
+├── data/
+│   ├── projects.js
+│   ├── handsOn.js
+│   └── evolution.js
+│
+├── App.jsx
+├── index.css
+└── main.jsx
+The exact structure may evolve as the portfolio develops.
+
+🖥 Local Development
+Clone the repository:
+
+Bash
+
+git clone https://github.com/raghavendrashivam474/evolution-portfolio.git
 cd evolution-portfolio
 Install dependencies:
 
 Bash
 
 npm install
-Run locally:
+Run the development server:
 
 Bash
 
 npm run dev
-Build:
+Build for production:
 
 Bash
 
 npm run build
+Run lint:
+
+Bash
+
+npm run lint
 🚀 Deployment
-Deployed via Vercel.
+The portfolio is deployed through Vercel.
 
-Push to main → automatic production deployment.
+Production deployments are triggered from the main branch.
 
-📌 Design Principles
-Narrative over static layout
-Animation synchronized with state
-Minimal libraries
-Content separated from UI logic
-Clean component boundaries
-Performance-conscious rendering
-🔮 Future Enhancements
-Dynamic project CMS
-Motion micro-interactions
-Command palette navigation
-AI-powered project descriptions
-Analytics integration
-## 📬 Transmission Channels
+Live:
 
-LinkedIn → [Raghavendra Singh](https://www.linkedin.com/in/raghavendra-singh-2335292ab/)
+https://raghav.live/
 
-GitHub → [raghavendrashivam474](https://github.com/raghavendrashivam474)
+🔐 Content Accuracy
+Portfolio metadata follows a strict rule:
 
-Email → [raghavendrashivam474@gmail.com](mailto:raghavendrashivam474@gmail.com)
+text
 
-Status → Available for collaboration, internships, and product discussions.
+Actual Repository
+       ↓
+Current README
+       ↓
+Current Implementation
+       ↓
+Portfolio Metadata
+The portfolio should never:
 
+inflate technology stacks
+claim unsupported expertise
+invent project capabilities
+use outdated project information as current truth
+If something was built simply, it should be represented simply.
+
+🔮 Future Direction
+Potential future work includes:
+
+Content administration / CMS
+Admin-only content editing
+Dynamic project metadata
+More refined interaction patterns
+Analytics
+Additional evidence relationships between technologies and projects
+These should be introduced only when they provide clear value.
+
+The portfolio should remain intentionally lightweight.
+
+📬 Contact
+Email
+raghavendrashivam474@gmail.com
+
+LinkedIn
+https://www.linkedin.com/in/raghavendra-singh-2335292ab/
+
+GitHub
+https://github.com/raghavendrashivam474
+
+Instagram
+https://www.instagram.com/raghavendra.builds
+
+🌐 Continuation
+The portfolio connects to the broader work through:
+
+aryntra ↗
+
+https://arynta.com
+
+📌 Status
+Active development
+
+The portfolio is currently evolving alongside the builder behind it.
+
+Build what deserves to exist.
