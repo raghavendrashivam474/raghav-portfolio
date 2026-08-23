@@ -5,7 +5,6 @@ export default function EvolutionPanel({ isOpen, onClose }) {
   const panelRef = useRef(null)
   const closeBtnRef = useRef(null)
 
-  // Focus management: when panel opens, focus the close button
   useEffect(() => {
     if (isOpen) {
       const timer = requestAnimationFrame(() => {
@@ -15,7 +14,6 @@ export default function EvolutionPanel({ isOpen, onClose }) {
     }
   }, [isOpen])
 
-  // Escape key closes panel
   const handleKeyDown = useCallback(
     (e) => {
       if (e.key === 'Escape' && isOpen) {
@@ -31,7 +29,6 @@ export default function EvolutionPanel({ isOpen, onClose }) {
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
-  // Body scroll lock on mobile when open
   useEffect(() => {
     if (isOpen) {
       const originalOverflow = document.body.style.overflow
@@ -46,9 +43,9 @@ export default function EvolutionPanel({ isOpen, onClose }) {
 
   return (
     <>
-      {/* Backdrop */}
+      {/* Backdrop with blur */}
       <div
-        className="fixed inset-0 z-40 bg-obsidian/60 transition-opacity duration-200"
+        className="fixed inset-0 z-40 bg-obsidian/70 backdrop-blur-md transition-opacity duration-300"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -60,7 +57,7 @@ export default function EvolutionPanel({ isOpen, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-label="Builder evolution stages"
-        className="fixed z-50 top-16 right-5 max-w-[360px] w-[calc(100vw-2.5rem)] sm:w-[360px] bg-graphite border border-ash/60 p-6 sm:p-7 shadow-2xl rounded-sm max-h-[calc(100dvh-5rem)] overflow-y-auto max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-md max-sm:max-h-[80dvh] max-sm:border-x-0 max-sm:border-b-0"
+        className="fixed z-50 top-16 right-5 max-w-[360px] w-[calc(100vw-2.5rem)] sm:w-[360px] bg-graphite/95 backdrop-blur-xl border border-ash/60 p-6 sm:p-7 shadow-2xl rounded-sm max-h-[calc(100dvh-5rem)] overflow-y-auto max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-md max-sm:max-h-[80dvh] max-sm:border-x-0 max-sm:border-b-0 animate-in fade-in zoom-in-95 duration-200"
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-6">
@@ -78,7 +75,7 @@ export default function EvolutionPanel({ isOpen, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close evolution panel"
-            className="text-stone hover:text-ivory focus-visible:text-oxide p-1.5 leading-none transition-colors text-lg"
+            className="text-stone hover:text-ivory focus-visible:text-oxide p-1.5 leading-none transition-colors text-lg cursor-pointer"
           >
             ×
           </button>

@@ -1,34 +1,18 @@
-﻿import { useState, useRef, useCallback } from 'react'
-import EvolutionPanel from './EvolutionPanel'
+﻿import EvolutionPanel from './EvolutionPanel'
 
-export default function EvolutionTrigger() {
-  const [isOpen, setIsOpen] = useState(false)
-  const triggerRef = useRef(null)
-
-  const handleToggle = useCallback(() => {
-    setIsOpen((prev) => !prev)
-  }, [])
-
-  const handleClose = useCallback(() => {
-    setIsOpen(false)
-    requestAnimationFrame(() => {
-      triggerRef.current?.focus()
-    })
-  }, [])
-
+export default function EvolutionTrigger({ isOpen, onToggle, onClose }) {
   return (
     <>
       <button
-        ref={triggerRef}
         type="button"
-        onClick={handleToggle}
+        onClick={onToggle}
         aria-label={isOpen ? "Close builder evolution" : "Open builder evolution"}
         aria-expanded={isOpen}
         aria-controls="evolution-panel"
-        className="fixed top-5 right-5 z-50 p-3 group flex items-center gap-2"
+        className="fixed top-5 right-5 z-50 p-2 group flex items-center gap-2 cursor-pointer"
       >
         <span
-          className={`text-micro transition-opacity duration-200 ${
+          className={`text-xs font-mono tracking-wider transition-opacity duration-200 ${
             isOpen
               ? 'text-oxide opacity-100'
               : 'text-stone opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100'
@@ -37,10 +21,10 @@ export default function EvolutionTrigger() {
           evolution
         </span>
         <span
-          className={`text-lg leading-none transition-colors duration-200 ${
+          className={`text-2xl sm:text-3xl leading-none transition-all duration-200 ${
             isOpen
-              ? 'text-oxide'
-              : 'text-stone group-hover:text-oxide group-focus-visible:text-oxide group-active:text-copper'
+              ? 'text-oxide scale-110'
+              : 'text-stone group-hover:text-oxide group-focus-visible:text-oxide group-active:text-copper group-hover:scale-105'
           }`}
           aria-hidden="true"
         >
@@ -48,7 +32,7 @@ export default function EvolutionTrigger() {
         </span>
       </button>
 
-      <EvolutionPanel isOpen={isOpen} onClose={handleClose} />
+      <EvolutionPanel isOpen={isOpen} onClose={onClose} />
     </>
   )
 }
