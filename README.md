@@ -78,10 +78,12 @@ There are no dates, job titles, proficiency levels, or fabricated milestones.
 
 It represents a direction of thinking rather than a completed destination.
 
+```
+
 🏗 Architecture
 The current application is intentionally small and component-driven.
 
-text
+```text
 
 App.jsx
 │
@@ -102,8 +104,8 @@ App.jsx
 └── MoreWorkPanel
 Overlay Model
 Interactive depth layers use a centralized overlay state:
-
-text
+```
+```text
 
 null
 │
@@ -121,8 +123,9 @@ focus is moved into the active panel
 Escape closes the panel
 focus is restored to the originating trigger
 This keeps the interaction model predictable and accessible.
-
+```
 🧠 Design Principles
+```
 Minimal surface
 The main page should remain quiet.
 
@@ -153,7 +156,11 @@ sequential unlocks
 terminal animations
 excessive scrolling
 narrative gatekeepers
+
+```
+
 🛠 Tech Stack
+```
 Application
 React
 Vite
@@ -171,8 +178,10 @@ Deployment
 Vercel
 Production domain: https://raghav.live/
 No backend or external CMS is currently required.
+```
 
 📦 Selected Work
+```text
 Aryntra Anveksha
 Aryntra system focused on its current product direction and implementation.
 
@@ -192,14 +201,15 @@ Dev-Vault
 Aryntra Backtrace
 GradeFlow
 The project catalogue is data-driven through:
-
-text
+```
+```text
 
 src/data/projects.js
 Project metadata should always be verified against the actual project implementation.
+```
 
 📁 Project Structure
-text
+```text
 
 src/
 ├── components/
@@ -222,47 +232,51 @@ src/
 ├── index.css
 └── main.jsx
 The exact structure may evolve as the portfolio develops.
-
+```
 🖥 Local Development
 Clone the repository:
 
-Bash
+```Bash
 
 git clone https://github.com/raghavendrashivam474/evolution-portfolio.git
 cd evolution-portfolio
 Install dependencies:
-
-Bash
+```
+```Bash
 
 npm install
 Run the development server:
-
-Bash
+```
+```Bash
 
 npm run dev
 Build for production:
-
-Bash
+```
+```Bash
 
 npm run build
 Run lint:
-
-Bash
+```
+```Bash
 
 npm run lint
+```
+```text
 🚀 Deployment
 The portfolio is deployed through Vercel.
 
 Production deployments are triggered from the main branch.
-
+```
+```
 Live:
 
 https://raghav.live/
-
+```
 🔐 Content Accuracy
+
 Portfolio metadata follows a strict rule:
 
-text
+```text
 
 Actual Repository
        ↓
@@ -278,8 +292,9 @@ claim unsupported expertise
 invent project capabilities
 use outdated project information as current truth
 If something was built simply, it should be represented simply.
-
+```
 🔮 Future Direction
+```
 Potential future work includes:
 
 Content administration / CMS
@@ -291,7 +306,8 @@ Additional evidence relationships between technologies and projects
 These should be introduced only when they provide clear value.
 
 The portfolio should remain intentionally lightweight.
-
+```
+```
 📬 Contact
 Email
 raghavendrashivam474@gmail.com
@@ -311,10 +327,12 @@ The portfolio connects to the broader work through:
 aryntra ↗
 
 https://arynta.com
-
+```
 📌 Status
+```
 Active development
 
 The portfolio is currently evolving alongside the builder behind it.
 
 Build what deserves to exist.
+```
