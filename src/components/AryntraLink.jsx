@@ -2,7 +2,7 @@ export default function AryntraLink() {
   return (
     <div className="text-center flex flex-col items-center">
       <a
-        href="https://arynta.com"
+        href="https://aryntra.com"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit aryntra.com (opens in a new tab)"
