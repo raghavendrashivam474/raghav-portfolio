@@ -4,6 +4,7 @@ import EvolutionTrigger from './components/EvolutionTrigger'
 import MinimalHero from './components/MinimalHero'
 import SelectedWork from './components/SelectedWork'
 import AryntraLink from './components/AryntraLink'
+import ContactFooter from './components/ContactFooter'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <MinimalHero />
         <SelectedWork />
         <AryntraLink />
+        <ContactFooter />
       </main>
     </PortfolioShell>
   )

@@ -1,8 +1,8 @@
 ﻿export default function AryntraLink() {
   return (
-    <footer className="mt-20 sm:mt-28 mb-12 text-center">
+    <div className="mt-16 sm:mt-20 text-center">
       <a
-        href="https://aryntra.com"
+        href="https://arynta.com"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit aryntra.com (opens in a new tab)"
@@ -16,6 +16,6 @@
           ↗
         </span>
       </a>
-    </footer>
+    </div>
   )
 }
