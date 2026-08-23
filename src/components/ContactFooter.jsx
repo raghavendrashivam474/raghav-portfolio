@@ -1,4 +1,4 @@
-﻿export default function ContactFooter() {
+export default function ContactFooter() {
   const contactLinks = [
     {
       name: 'Email',
@@ -86,7 +86,7 @@
 
   return (
     <footer className="text-center pt-1">
-      <p className="text-xs sm:text-sm text-stone/50 tracking-[0.25em] lowercase mb-6 select-none font-mono">
+      <p className="text-xs sm:text-sm text-stone tracking-[0.25em] lowercase mb-6 select-none font-mono">
         let&apos;s build something.
       </p>
       <div className="flex items-center justify-center gap-8 sm:gap-10">
@@ -97,9 +97,9 @@
             target={link.href.startsWith('mailto:') ? undefined : '_blank'}
             rel={link.href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
             aria-label={link.ariaLabel}
-            className="text-stone/60 hover:text-ivory focus-visible:text-oxide transition-colors duration-200 p-1.5 group flex items-center justify-center rounded-sm hover:bg-surface/40"
+            className="text-stone hover:text-ivory focus:outline-none focus-visible:text-oxide transition-colors duration-200 p-2 group flex items-center justify-center rounded-sm hover:bg-slate/60"
           >
-            <span className="transition-transform duration-150 group-hover:scale-110 group-hover:text-oxide">
+            <span className="transition-transform duration-150 group-hover:scale-110 group-hover:text-copper">
               {link.icon}
             </span>
           </a>
