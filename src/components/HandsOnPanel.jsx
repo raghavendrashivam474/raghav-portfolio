@@ -112,75 +112,86 @@ export default function HandsOnPanel({ isOpen, onClose }) {
             aria-hidden="true"
           />
 
-          {/* Architectural Node Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 relative z-10">
-            {currentStack.map((group) => (
-              <div key={group.category} className="flex flex-col">
-                {/* Structural Category Header */}
-                <div className="flex items-center gap-3 border-b border-border/60 pb-2 mb-4">
-                  <span className="text-[10px] font-mono text-copper/70">
-                    {group.id} //
-                  </span>
-                  <h4 className="text-micro font-mono tracking-widest uppercase text-ash">
-                    {group.category}
-                  </h4>
-                </div>
-                
-                <ul className="space-y-1">
-                  {group.items.map((item) => {
-                    const isSelected = activeTech === item.name
+          {/* Typographic Stream Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 relative z-10">
+            {currentStack.map((group) => {
+              const hasActiveInGroup = group.items.some(i => i.name === activeTech)
 
-                    return (
-                      <li key={item.name} className="flex flex-col">
-                        {/* IDE-like Interactive Row */}
-                        <button
-                          type="button"
-                          onClick={() => setActiveTech(isSelected ? null : item.name)}
-                          className={`group relative flex items-center justify-between w-full text-left py-2 px-3 -ml-3 rounded-md transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-copper/50 ${
-                            isSelected
-                              ? 'bg-slate/60 text-oxide'
-                              : 'hover:bg-slate/40 text-ivory hover:text-copper'
-                          }`}
-                        >
-                          <span className="text-[1.05rem] font-medium tracking-tight">
-                            {item.name}
-                          </span>
-                          <span 
-                            className={`font-mono text-lg leading-none transition-all duration-300 ${
-                              isSelected ? 'text-oxide rotate-45' : 'text-copper opacity-0 group-hover:opacity-100'
+              return (
+                <div key={group.category} className="flex flex-col">
+                  {/* Structural Category Header */}
+                  <div className="flex items-center gap-3 border-b border-border/60 pb-2 mb-4">
+                    <span className="text-[10px] font-mono text-copper/70">
+                      {group.id} //
+                    </span>
+                    <h4 className="text-micro font-mono tracking-widest uppercase text-ash">
+                      {group.category}
+                    </h4>
+                  </div>
+                  
+                  {/* Inline Typographic Nodes Separated by Dots */}
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                    {group.items.map((item, idx) => {
+                      const isSelected = activeTech === item.name
+
+                      return (
+                        <div key={item.name} className="flex items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() => setActiveTech(isSelected ? null : item.name)}
+                            className={`text-[1.1rem] sm:text-[1.25rem] font-medium tracking-tight transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-copper/50 rounded-sm px-1.5 -mx-1.5 ${
+                              isSelected
+                                ? 'text-oxide bg-slate/70'
+                                : 'text-ivory hover:text-copper hover:bg-slate/30'
                             }`}
-                            aria-hidden="true"
                           >
-                            +
-                          </span>
-                        </button>
-
-                        {/* Inset Evidence Drawer */}
-                        <div
-                          className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                            isSelected ? 'max-h-48 opacity-100 mb-2' : 'max-h-0 opacity-0'
-                          }`}
-                        >
-                          <div className="mt-1 ml-1.5 pl-4 border-l border-copper/40 bg-obsidian/30 py-2.5 pr-3 rounded-r-md shadow-inner">
-                            <span className="block text-[10px] font-mono uppercase tracking-widest text-ash mb-2">
-                              Verified in
+                            {item.name}
+                          </button>
+                          
+                          {/* Separator Dot (Hidden for the last item in the array) */}
+                          {idx < group.items.length - 1 && (
+                            <span className="text-border/80 select-none text-lg" aria-hidden="true">
+                              ·
                             </span>
-                            <ul className="space-y-1.5">
-                              {item.evidence.map((repo) => (
-                                <li key={repo} className="text-sm text-stone font-sans flex items-center gap-2.5">
-                                  <span className="w-1 h-1 rounded-full bg-border" aria-hidden="true" />
-                                  {repo}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                          )}
                         </div>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
-            ))}
+                      )
+                    })}
+                  </div>
+
+                  {/* Inset Evidence Drawer (Renders below the whole paragraph if a child is active) */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      hasActiveInGroup ? 'max-h-48 opacity-100 mt-5' : 'max-h-0 opacity-0 mt-0'
+                    }`}
+                  >
+                    {group.items
+                      .filter((i) => i.name === activeTech)
+                      .map((activeItem) => (
+                        <div key={activeItem.name + "-evidence"} className="pl-4 border-l-[1.5px] border-copper/50 bg-obsidian/30 py-3.5 pr-4 rounded-r-md shadow-inner">
+                          <div className="flex items-center justify-between mb-3">
+                            <span className="block text-[10px] font-mono uppercase tracking-widest text-ash">
+                              Currently used in
+                            </span>
+                            <span className="text-[10px] font-mono text-copper/80 bg-copper/10 px-2 py-0.5 rounded border border-copper/30">
+                              {activeItem.evidence.length} {activeItem.evidence.length === 1 ? 'repo' : 'repos'}
+                            </span>
+                          </div>
+                          <ul className="space-y-2">
+                            {activeItem.evidence.map((repo) => (
+                              <li key={repo} className="text-sm text-stone font-sans flex items-center gap-2.5">
+                                <span className="w-1 h-1 rounded-full bg-border" aria-hidden="true" />
+                                {repo}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                    ))}
+                  </div>
+
+                </div>
+              )
+            })}
           </div>
         </div>
 
