@@ -67,7 +67,7 @@ export default function HandsOnPanel({ isOpen, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-label="Hands-on current working stack"
-        className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-1.5rem)] max-w-[1000px] h-[90dvh] flex flex-col rounded-xl border border-border/80 bg-graphite/95 shadow-[0_0_0_1px_rgba(200,126,74,0.1),0_24px_90px_rgba(0,0,0,0.65)] max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:h-[92dvh] overflow-hidden"
+        className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-1.5rem)] max-w-5xl h-[90dvh] flex flex-col rounded-xl border border-border/80 bg-graphite/95 shadow-[0_0_0_1px_rgba(200,126,74,0.1),0_24px_90px_rgba(0,0,0,0.65)] max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:h-[92dvh] overflow-hidden"
       >
         {/* Top Accent Line */}
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-copper to-transparent shrink-0" />
@@ -112,47 +112,67 @@ export default function HandsOnPanel({ isOpen, onClose }) {
             aria-hidden="true"
           />
 
-          {/* Typographic Node Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 relative z-10">
+          {/* Architectural Node Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10 relative z-10">
             {currentStack.map((group) => (
-              <div key={group.category} className="space-y-5">
-                <h4 className="text-micro font-mono tracking-[0.2em] uppercase text-ash border-b border-border/40 pb-2">
-                  {group.category}
-                </h4>
+              <div key={group.category} className="flex flex-col">
+                {/* Structural Category Header */}
+                <div className="flex items-center gap-3 border-b border-border/60 pb-2 mb-4">
+                  <span className="text-[10px] font-mono text-copper/70">
+                    {group.id} //
+                  </span>
+                  <h4 className="text-micro font-mono tracking-widest uppercase text-ash">
+                    {group.category}
+                  </h4>
+                </div>
                 
-                <ul className="space-y-4">
+                <ul className="space-y-1">
                   {group.items.map((item) => {
                     const isSelected = activeTech === item.name
 
                     return (
                       <li key={item.name} className="flex flex-col">
+                        {/* IDE-like Interactive Row */}
                         <button
                           type="button"
                           onClick={() => setActiveTech(isSelected ? null : item.name)}
-                          className={`text-left text-lg sm:text-xl font-medium tracking-tight transition-all duration-200 outline-none focus-visible:text-oxide ${
+                          className={`group relative flex items-center justify-between w-full text-left py-2 px-3 -ml-3 rounded-md transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-copper/50 ${
                             isSelected
-                              ? 'text-oxide'
-                              : 'text-ivory hover:text-copper'
+                              ? 'bg-slate/60 text-oxide'
+                              : 'hover:bg-slate/40 text-ivory hover:text-copper'
                           }`}
                         >
-                          {item.name}
+                          <span className="text-[1.05rem] font-medium tracking-tight">
+                            {item.name}
+                          </span>
+                          <span 
+                            className={`font-mono text-lg leading-none transition-all duration-300 ${
+                              isSelected ? 'text-oxide rotate-45' : 'text-copper opacity-0 group-hover:opacity-100'
+                            }`}
+                            aria-hidden="true"
+                          >
+                            +
+                          </span>
                         </button>
 
-                        {/* Expandable Evidence Detail */}
+                        {/* Inset Evidence Drawer */}
                         <div
                           className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                            isSelected ? 'max-h-48 opacity-100 mt-3' : 'max-h-0 opacity-0'
+                            isSelected ? 'max-h-48 opacity-100 mb-2' : 'max-h-0 opacity-0'
                           }`}
                         >
-                          <div className="pl-3 border-l-[1.5px] border-copper/40 py-0.5 flex flex-col gap-1.5">
-                            <span className="text-[10px] font-mono uppercase tracking-widest text-ash">
-                              Currently used in
+                          <div className="mt-1 ml-1.5 pl-4 border-l border-copper/40 bg-obsidian/30 py-2.5 pr-3 rounded-r-md shadow-inner">
+                            <span className="block text-[10px] font-mono uppercase tracking-widest text-ash mb-2">
+                              Verified in
                             </span>
-                            {item.evidence.map((repo) => (
-                              <span key={repo} className="text-sm text-stone font-sans">
-                                {repo}
-                              </span>
-                            ))}
+                            <ul className="space-y-1.5">
+                              {item.evidence.map((repo) => (
+                                <li key={repo} className="text-sm text-stone font-sans flex items-center gap-2.5">
+                                  <span className="w-1 h-1 rounded-full bg-border" aria-hidden="true" />
+                                  {repo}
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
                       </li>
@@ -166,8 +186,9 @@ export default function HandsOnPanel({ isOpen, onClose }) {
 
         {/* 3. FIXED FOOTER */}
         <footer className="shrink-0 px-6 sm:px-10 py-5 border-t border-border/60 bg-graphite/90 text-center sm:text-left">
-          <p className="text-xs sm:text-sm font-mono tracking-wide text-ash">
-            A working stack, not a list of everything I&apos;ve ever touched.
+          <p className="text-xs sm:text-sm font-mono tracking-wide text-ash flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <span>A working stack, not a list of everything I&apos;ve ever touched.</span>
+            <span className="text-copper/60 text-[10px] uppercase tracking-widest">S10 Architecture</span>
           </p>
         </footer>
       </section>

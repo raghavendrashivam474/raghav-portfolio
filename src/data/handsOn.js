@@ -1,10 +1,11 @@
 // src/data/handsOn.js
 // S10: Living Current Stack Data Model
-// Focuses on what is actively being built with, rather than an encyclopedic inventory.
+// Focuses on what is actively being built with.
 // Evidence is retained but moved to a secondary inspection layer.
 
 export const currentStack = [
   {
+    id: "01",
     category: "Languages",
     items: [
       { name: "TypeScript", evidence: ["Aryntra Anveksha", "Aryntra Tarka"] },
@@ -14,6 +15,7 @@ export const currentStack = [
     ]
   },
   {
+    id: "02",
     category: "Build",
     items: [
       { name: "React",   evidence: ["Aryntra Anveksha", "Aryntra Tarka", "GradeFlow"] },
@@ -23,6 +25,7 @@ export const currentStack = [
     ]
   },
   {
+    id: "03",
     category: "Data",
     items: [
       { name: "PostgreSQL", evidence: ["Aryntra Anveksha"] },
@@ -31,6 +34,7 @@ export const currentStack = [
     ]
   },
   {
+    id: "04",
     category: "AI",
     items: [
       { name: "Ollama",     evidence: ["Aryntra Anveksha", "Aryntra Tarka"] },
@@ -39,6 +43,7 @@ export const currentStack = [
     ]
   },
   {
+    id: "05",
     category: "Systems & Tooling",
     items: [
       { name: "Docker",           evidence: ["System Foundations"] },
