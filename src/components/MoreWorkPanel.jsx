@@ -1,9 +1,15 @@
 import { useEffect, useRef, useCallback } from 'react'
 import { otherSystems } from '../data/projects'
 
+function formatIndex(index) {
+  return String(index + 1).padStart(2, '0')
+}
+
 export default function MoreWorkPanel({ isOpen, onClose }) {
   const panelRef = useRef(null)
   const closeBtnRef = useRef(null)
+  const count = otherSystems.length
+  const countLabel = String(count).padStart(2, '0')
 
   useEffect(() => {
     if (isOpen) {
@@ -48,13 +54,13 @@ export default function MoreWorkPanel({ isOpen, onClose }) {
         aria-hidden="true"
       />
 
-      {/* Full-Height Exploration Overlay Frame */}
+      {/* Project Archive Overlay */}
       <section
         ref={panelRef}
         id="more-work-panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Other work and projects"
+        aria-label="Project archive beyond selected work"
         className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-1.5rem)] max-w-5xl h-[90dvh] flex flex-col rounded-xl border border-border/80 bg-graphite/95 shadow-[0_0_0_1px_rgba(200,126,74,0.1),0_24px_90px_rgba(0,0,0,0.65)] max-sm:bottom-0 max-sm:top-auto max-sm:left-0 max-sm:translate-x-0 max-sm:translate-y-0 max-sm:w-full max-sm:max-w-none max-sm:rounded-t-2xl max-sm:rounded-b-none max-sm:h-[92dvh] overflow-hidden"
       >
         {/* Top Accent Line */}
@@ -64,96 +70,151 @@ export default function MoreWorkPanel({ isOpen, onClose }) {
         <header className="shrink-0 p-6 sm:p-8 pb-5 border-b border-border/60 bg-graphite/90 relative z-10">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <div className="inline-flex items-center gap-2 mb-2">
+              <div className="inline-flex items-center gap-2 mb-3">
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-md border border-copper/40 bg-copper/10 text-copper text-xs font-mono">
                   +
                 </span>
                 <span className="text-micro font-mono tracking-[0.22em] uppercase text-copper">
-                  Additional Work
+                  Project Archive
                 </span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-ivory tracking-tight">
-                Supporting & Experimental Systems
-              </h3>
-              <p className="mt-1 text-sm sm:text-base text-stone leading-relaxed">
-                Previous architectures, local-first tools, and technical exploratory builds.
-              </p>
+
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-ivory tracking-tight">
+                    Beyond the selected work
+                  </h3>
+                  <p className="mt-1.5 text-sm sm:text-base text-stone leading-relaxed max-w-xl">
+                    Other systems, experiments, utilities, and ideas I&apos;ve built.
+                    The three featured projects come first — this is the broader body of work underneath.
+                  </p>
+                </div>
+
+                <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-ash">
+                    Archive
+                  </span>
+                  <span className="text-sm font-mono text-copper">
+                    {countLabel} SYSTEMS
+                  </span>
+                </div>
+              </div>
             </div>
 
             <button
               ref={closeBtnRef}
               type="button"
               onClick={onClose}
-              aria-label="Close other work panel"
-              className="shrink-0 h-9 w-9 inline-flex items-center justify-center rounded-lg border border-border bg-slate/50 text-stone hover:text-ivory hover:border-copper/50 hover:bg-slate transition-all cursor-pointer"
+              aria-label="Close project archive"
+              className="shrink-0 h-10 w-10 inline-flex items-center justify-center rounded-lg border border-border bg-slate/50 text-stone hover:text-ivory hover:border-copper/50 hover:bg-slate transition-all cursor-pointer"
             >
               ×
             </button>
           </div>
         </header>
 
-        {/* 2. SCROLLABLE CONTENT BODY */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 relative">
-          {/* Ambient Glow */}
+        {/* 2. SCROLLABLE ARCHIVE BODY */}
+        <div className="flex-1 overflow-y-auto p-5 sm:p-8 relative">
           <div
             className="pointer-events-none absolute -top-24 right-0 h-64 w-64 rounded-full bg-copper/10 blur-3xl"
             aria-hidden="true"
           />
 
-          {/* 2-Column Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          {/* Atlas meta strip */}
+          <div className="relative z-10 mb-5 flex flex-wrap items-center justify-between gap-2 border-b border-border/50 pb-3">
+            <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.18em] text-ash">
+              <span className="w-1.5 h-1.5 rounded-full bg-copper" />
+              <span>Work Atlas</span>
+              <span className="text-border">·</span>
+              <span>Evidence-backed</span>
+            </div>
+            <span className="sm:hidden text-[11px] font-mono text-copper">
+              {countLabel} systems
+            </span>
+          </div>
+
+          {/* Dense 2-column archive on desktop, single column on mobile */}
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 content-start">
             {otherSystems.map((project, idx) => (
               <a
                 key={project.id}
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden rounded-xl border border-border/70 bg-gradient-to-br from-slate/60 to-obsidian/40 p-5 sm:p-6 text-left transition-all duration-200 hover:border-copper/45 hover:shadow-[0_0_0_1px_rgba(200,126,74,0.12)] focus:outline-none focus-visible:border-copper flex flex-col justify-between"
+                className="group relative flex flex-col justify-between min-h-[148px] sm:min-h-[168px] rounded-xl border border-border/70 bg-gradient-to-br from-slate/55 to-obsidian/45 p-5 text-left transition-all duration-200 hover:border-copper/45 hover:bg-slate/40 hover:shadow-[0_0_0_1px_rgba(200,126,74,0.12)] focus:outline-none focus-visible:border-copper focus-visible:ring-1 focus-visible:ring-copper/40"
               >
-                <div>
-                  <div className="flex items-center justify-between gap-3 mb-3">
-                    <span className="text-xs font-mono text-copper/80">
-                      0{idx + 1} /
+                {/* Top row: index + status */}
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-xs font-mono text-copper/80 tracking-wider">
+                      {formatIndex(idx)} /
                     </span>
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-border bg-graphite text-[10px] font-mono uppercase tracking-wider text-copper">
-                      {project.status}
-                    </span>
+                    {project.kind && (
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-ash border border-border/60 px-1.5 py-0.5 rounded">
+                        {project.kind}
+                      </span>
+                    )}
                   </div>
 
-                  <h4 className="text-lg sm:text-xl font-semibold text-ivory tracking-tight group-hover:text-oxide transition-colors inline-flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full border border-border bg-graphite text-[10px] font-mono uppercase tracking-wider text-copper shrink-0">
+                    {project.status}
+                  </span>
+                </div>
+
+                {/* Title + arrow */}
+                <div className="mb-3">
+                  <h4 className="text-lg sm:text-xl font-semibold text-ivory tracking-tight inline-flex items-center gap-2 group-hover:text-oxide transition-colors">
                     <span>{project.title}</span>
                     <span
-                      className="text-copper text-base opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                      className="text-copper text-sm opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                       aria-hidden="true"
                     >
                       ↗
                     </span>
                   </h4>
-
-                  <p className="text-sm text-stone/90 leading-relaxed mb-4">
+                  <p className="mt-1.5 text-sm text-stone leading-relaxed">
                     {project.tagline}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-border/50 flex items-center justify-between text-xs font-mono">
-                  <span className="text-ash/90">{project.tech}</span>
-                  <span className="text-copper/80 group-hover:text-copper transition-colors">
-                    Repository ↗
+                {/* Footer meta */}
+                <div className="mt-auto pt-3 border-t border-border/50 flex items-center justify-between gap-3">
+                  <span className="text-[11px] font-mono text-ash truncate">
+                    {project.tech}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-copper/70 group-hover:text-copper transition-colors shrink-0">
+                    Open repo
                   </span>
                 </div>
+
+                {/* Hover copper edge accent */}
+                <span
+                  className="pointer-events-none absolute left-0 top-4 bottom-4 w-px bg-copper/0 group-hover:bg-copper/50 transition-colors"
+                  aria-hidden="true"
+                />
               </a>
             ))}
           </div>
+
+          {/* Intentional empty-state note if archive is intentionally small */}
+          {count < 8 && (
+            <div className="relative z-10 mt-6 rounded-lg border border-dashed border-border/60 bg-obsidian/20 px-4 py-3">
+              <p className="text-[11px] sm:text-xs font-mono text-ash leading-relaxed">
+                Archive shows verified public systems only — {countLabel} entries.
+                Featured work remains Anveksha · Aayaam · Tarka.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* 3. FIXED FOOTER */}
-        <footer className="shrink-0 px-6 py-4 border-t border-border/60 bg-graphite/90 flex items-center justify-between text-xs font-mono">
+        <footer className="shrink-0 px-6 sm:px-8 py-4 border-t border-border/60 bg-graphite/90 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
           <div className="flex items-center gap-2 text-stone">
             <span className="w-2 h-2 rounded-full bg-copper animate-pulse" />
-            <span>Archive & Supporting Codebases</span>
+            <span>Archive · not competing with selected work</span>
           </div>
-          <span className="text-copper/90 font-medium">
-            {otherSystems.length} Public Systems
+          <span className="text-copper/90 font-medium uppercase tracking-wider">
+            {countLabel} public systems
           </span>
         </footer>
       </section>

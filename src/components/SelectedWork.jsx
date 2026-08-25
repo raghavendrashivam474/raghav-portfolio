@@ -19,7 +19,9 @@ export default function SelectedWork({ onOpenMoreWork }) {
               {project.title.replace('Aryntra ', '')}
             </a>
             {idx < activeMissions.length - 1 && (
-              <span className="text-stone/60 font-mono text-sm select-none" aria-hidden="true">·</span>
+              <span className="text-stone/60 font-mono text-sm select-none" aria-hidden="true">
+                ·
+              </span>
             )}
           </div>
         ))}
@@ -34,7 +36,7 @@ export default function SelectedWork({ onOpenMoreWork }) {
           className="group inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-sm border border-border bg-graphite/90 hover:border-copper hover:bg-slate text-micro text-stone hover:text-ivory focus:outline-none focus-visible:border-copper focus-visible:text-oxide transition-all duration-200 tracking-wider cursor-pointer shadow-sm"
         >
           <span className="text-copper group-hover:text-oxide transition-colors">+</span>
-          <span>more work</span>
+          <span>project archive</span>
         </button>
       </div>
     </section>

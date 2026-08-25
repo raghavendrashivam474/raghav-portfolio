@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // src/data/projects.js
 // SINGLE SOURCE OF TRUTH for all mission and project data.
 //
@@ -49,7 +49,6 @@ export const activeMissions = [
     github: "https://github.com/raghavendrashivam474/Aryntra_Anveksha",
     apk: ""
   },
-
   {
     id: "02",
     title: "Aryntra Aayaam",
@@ -77,7 +76,6 @@ export const activeMissions = [
     github: "https://github.com/raghavendrashivam474/aryntra-aayaam",
     apk: ""
   },
-
   {
     id: "03",
     title: "Aryntra Tarka",
@@ -113,8 +111,8 @@ export const activeMissions = [
 ]
 
 // ============================================================
-// OTHER SYSTEMS — Previous, experimental, and supporting work.
-// tech remains a string (rendered as plain text, not tokenized).
+// PROJECT ARCHIVE — previous, experimental, and supporting work.
+// Only real repositories. Do not invent entries for visual symmetry.
 // ============================================================
 
 export const otherSystems = [
@@ -123,6 +121,7 @@ export const otherSystems = [
     title: "Syaahi",
     tagline: "Poetry platform for writers and readers",
     status: "PREVIOUS",
+    kind: "PRODUCT",
     tech: "Flutter Web · Node.js",
     github: "https://github.com/raghavendrashivam474/syaahi",
     apk: ""
@@ -132,6 +131,7 @@ export const otherSystems = [
     title: "Dev-Vault",
     tagline: "Developer resource organization and retrieval system",
     status: "PREVIOUS",
+    kind: "UTILITY",
     tech: "Vanilla JavaScript · IndexedDB",
     github: "https://github.com/raghavendrashivam474/dev-vault",
     apk: ""
@@ -141,6 +141,7 @@ export const otherSystems = [
     title: "Backtrace",
     tagline: "Automated error tracing and root cause analysis",
     status: "EXPERIMENTAL",
+    kind: "RESEARCH",
     tech: "Python · Log Analysis · LLM Integration",
     github: "https://github.com/raghavendrashivam474/Aryntra-Backtrace",
     apk: ""
@@ -150,6 +151,7 @@ export const otherSystems = [
     title: "GradeFlow",
     tagline: "Academic performance tracking and analytics",
     status: "PREVIOUS",
+    kind: "PRODUCT",
     tech: "React · Supabase · Data Visualization",
     github: "https://github.com/raghavendrashivam474/GradeFlow",
     apk: ""
