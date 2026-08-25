@@ -133,7 +133,7 @@ export default function MoreWorkPanel({ isOpen, onClose }) {
             </span>
           </div>
 
-          {/* Dense 2-column archive on desktop, single column on mobile */}
+          {/* 2-column archive grid filling up the space balanced */}
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 content-start">
             {otherSystems.map((project, idx) => (
               <a
@@ -141,10 +141,10 @@ export default function MoreWorkPanel({ isOpen, onClose }) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex flex-col justify-between min-h-[148px] sm:min-h-[168px] rounded-xl border border-border/70 bg-gradient-to-br from-slate/55 to-obsidian/45 p-5 text-left transition-all duration-200 hover:border-copper/45 hover:bg-slate/40 hover:shadow-[0_0_0_1px_rgba(200,126,74,0.12)] focus:outline-none focus-visible:border-copper focus-visible:ring-1 focus-visible:ring-copper/40"
+                className="group relative flex flex-col justify-between min-h-[148px] sm:min-h-[160px] rounded-xl border border-border/70 bg-gradient-to-br from-slate/55 to-obsidian/45 p-5 text-left transition-all duration-200 hover:border-copper/45 hover:bg-slate/40 hover:shadow-[0_0_0_1px_rgba(200,126,74,0.12)] focus:outline-none focus-visible:border-copper focus-visible:ring-1 focus-visible:ring-copper/40"
               >
                 {/* Top row: index + status */}
-                <div className="flex items-start justify-between gap-3 mb-4">
+                <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2.5">
                     <span className="text-xs font-mono text-copper/80 tracking-wider">
                       {formatIndex(idx)} /
@@ -172,7 +172,7 @@ export default function MoreWorkPanel({ isOpen, onClose }) {
                       ↗
                     </span>
                   </h4>
-                  <p className="mt-1.5 text-sm text-stone leading-relaxed">
+                  <p className="mt-1 text-sm text-stone leading-relaxed">
                     {project.tagline}
                   </p>
                 </div>
@@ -195,23 +195,13 @@ export default function MoreWorkPanel({ isOpen, onClose }) {
               </a>
             ))}
           </div>
-
-          {/* Intentional empty-state note if archive is intentionally small */}
-          {count < 8 && (
-            <div className="relative z-10 mt-6 rounded-lg border border-dashed border-border/60 bg-obsidian/20 px-4 py-3">
-              <p className="text-[11px] sm:text-xs font-mono text-ash leading-relaxed">
-                Archive shows verified public systems only — {countLabel} entries.
-                Featured work remains Anveksha · Aayaam · Tarka.
-              </p>
-            </div>
-          )}
         </div>
 
         {/* 3. FIXED FOOTER */}
         <footer className="shrink-0 px-6 sm:px-8 py-4 border-t border-border/60 bg-graphite/90 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
           <div className="flex items-center gap-2 text-stone">
             <span className="w-2 h-2 rounded-full bg-copper animate-pulse" />
-            <span>Archive · not competing with selected work</span>
+            <span>Archive · verified public systems</span>
           </div>
           <span className="text-copper/90 font-medium uppercase tracking-wider">
             {countLabel} public systems

@@ -2,13 +2,9 @@
 // src/data/projects.js
 // SINGLE SOURCE OF TRUTH for all mission and project data.
 //
-// Content is verified against the current public repositories.
-// Do NOT infer capabilities from names, roadmaps, or vision docs.
+// Content is verified against current public repositories.
 // Source of truth hierarchy:
 //   Actual repository → Current README → Current implementation → this file
-//
-// tech: activeMissions use arrays (rendered as badges)
-//       otherSystems use strings   (rendered as plain text)
 // ============================================================
 
 export const activeMissions = [
@@ -112,7 +108,7 @@ export const activeMissions = [
 
 // ============================================================
 // PROJECT ARCHIVE — previous, experimental, and supporting work.
-// Only real repositories. Do not invent entries for visual symmetry.
+// 8 Verified Repositories (OS-01 to OS-08).
 // ============================================================
 
 export const otherSystems = [
@@ -154,6 +150,46 @@ export const otherSystems = [
     kind: "PRODUCT",
     tech: "React · Supabase · Data Visualization",
     github: "https://github.com/raghavendrashivam474/GradeFlow",
+    apk: ""
+  },
+  {
+    id: "OS-05",
+    title: "Schedulr",
+    tagline: "Automated task and resource scheduling engine",
+    status: "PREVIOUS",
+    kind: "UTILITY",
+    tech: "Python · Algorithm Architecture",
+    github: "https://github.com/raghavendrashivam474/Schedulr",
+    apk: ""
+  },
+  {
+    id: "OS-06",
+    title: "Vinyasa",
+    tagline: "Flow state productivity and workspace coordinator",
+    status: "EXPERIMENTAL",
+    kind: "PRODUCT",
+    tech: "React · TypeScript · Local State",
+    github: "https://github.com/raghavendrashivam474/Vinyasa",
+    apk: ""
+  },
+  {
+    id: "OS-07",
+    title: "SecureVaultPlatform",
+    tagline: "Cryptographic storage and access control system",
+    status: "PREVIOUS",
+    kind: "SECURITY",
+    tech: "Go · Cryptography · Access Control",
+    github: "https://github.com/raghavendrashivam474/SecureVaultPlatform",
+    apk: ""
+  },
+  {
+    id: "OS-08",
+    title: "Anubhav",
+    tagline: "Experiential learning and skill reflection tracker",
+    status: "PREVIOUS",
+    kind: "SYSTEM",
+    tech: "Python · FastAPI · Database Schema",
+    github: "https://github.com/raghavendrashivam474/Anubhav",
     apk: ""
   }
 ]
