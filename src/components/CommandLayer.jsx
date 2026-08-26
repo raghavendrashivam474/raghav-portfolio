@@ -211,14 +211,14 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 text-[11px] font-mono text-ash select-none flex items-center gap-2">
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 sm:top-6 z-40 text-[11px] font-mono text-ash select-none flex items-center gap-2">
         <button
           type="button"
           onClick={handleOpen}
-          className="px-3 py-1.5 rounded-md border border-border/80 bg-graphite/90 text-stone hover:text-ivory hover:border-copper/60 transition-all duration-200 cursor-pointer shadow-md flex items-center gap-2 group"
+          className="px-3.5 py-1.5 rounded-full border border-border/80 bg-graphite/90 hover:bg-surface hover:border-copper/60 text-stone hover:text-ivory transition-all duration-200 cursor-pointer shadow-md flex items-center gap-2 group backdrop-blur-md"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-copper group-hover:animate-ping" />
-          <span>type or tap to explore</span>
+          <span className="whitespace-nowrap">type or tap to explore</span>
           <span className="px-1.5 py-0.2 rounded border border-border bg-slate/60 text-copper text-[10px]">/</span>
         </button>
       </div>
