@@ -57,7 +57,10 @@ function App() {
 
       <main className={`w-full max-w-2xl px-6 py-12 flex flex-col items-center justify-center text-center space-y-10 sm:space-y-12 transition-all duration-300 ease-out ${isAnyOpen ? 'blur-sm opacity-30 select-none' : ''}`}>
         <MinimalHero />
-        <SelectedWork onOpenMoreWork={handleOpenMoreWork} />
+        <SelectedWork
+          onOpenMoreWork={handleOpenMoreWork}
+          onOpenResearch={handleOpenResearch}
+        />
         <div className="w-full flex flex-col items-center justify-center gap-7 pt-8 border-t border-border/40">
           <AryntraLink />
           <ContactFooter />
