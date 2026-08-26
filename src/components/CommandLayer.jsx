@@ -3,8 +3,9 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 /**
  * CommandLayer — Quiet Semantic Command & Discovery Palette
  *
- * Deterministic, zero-dependency intent matcher that translates natural search terms
- * into instant portfolio overlays, project links, or external destinations.
+ * Responsive Discovery Pill Placement:
+ * - Desktop (sm:): Top-center (`top-6 left-1/2`)
+ * - Mobile (<sm): Floating bottom-center (`bottom-5 left-1/2`) for thumb reach & top-bar breathing room
  */
 
 const COMMAND_COMMANDS = [
@@ -98,7 +99,6 @@ const COMMAND_COMMANDS = [
   }
 ]
 
-// Simple deterministic fuzzy scorer
 function matchScore(cmd, query) {
   const q = query.toLowerCase().trim()
   if (!q) return 1
@@ -161,13 +161,10 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
     [handleClose, onOpenTools, onOpenEvolution, onOpenMoreWork]
   )
 
-  // Global keydown listener
   useEffect(() => {
     const handleGlobalKeyDown = (e) => {
-      // Don't intercept if user is typing inside an existing input/textarea
       if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return
 
-      // Shortcut 1: Cmd/Ctrl + K or Forward Slash /
       if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || e.key === '/') {
         e.preventDefault()
         if (isOpen) {
@@ -178,7 +175,6 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         return
       }
 
-      // Shortcut 2: Type any letter (A-Z, 0-9) to start discovering
       if (!isOpen && e.key.length === 1 && /[a-zA-Z0-9]/.test(e.key) && !e.metaKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault()
         handleOpen()
@@ -190,7 +186,6 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
     return () => window.removeEventListener('keydown', handleGlobalKeyDown)
   }, [isOpen, handleOpen, handleClose])
 
-  // Key navigation inside palette
   const handleInputKeyDown = (e) => {
     if (e.key === 'Escape') {
       e.stopPropagation()
@@ -211,11 +206,11 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
 
   if (!isOpen) {
     return (
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 sm:top-6 z-40 text-[11px] font-mono text-ash select-none flex items-center gap-2">
+      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 sm:top-6 sm:bottom-auto z-40 text-[11px] font-mono text-ash select-none flex items-center gap-2">
         <button
           type="button"
           onClick={handleOpen}
-          className="px-3.5 py-1.5 rounded-full border border-border/80 bg-graphite/90 hover:bg-surface hover:border-copper/60 text-stone hover:text-ivory transition-all duration-200 cursor-pointer shadow-md flex items-center gap-2 group backdrop-blur-md"
+          className="px-3.5 py-1.5 rounded-full border border-border/80 bg-graphite/90 hover:bg-surface hover:border-copper/60 text-stone hover:text-ivory transition-all duration-200 cursor-pointer shadow-lg flex items-center gap-2 group backdrop-blur-md"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-copper group-hover:animate-ping" />
           <span className="whitespace-nowrap">type or tap to explore</span>
@@ -241,7 +236,6 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
       >
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-copper to-transparent shrink-0" />
 
-        {/* Input Bar */}
         <div className="p-4 border-b border-border/60 flex items-center gap-3">
           <span className="text-copper font-mono text-sm">⌘</span>
           <input
@@ -265,7 +259,6 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
           </button>
         </div>
 
-        {/* Suggestions List */}
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length === 0 ? (
             <div className="p-4 text-center text-xs font-mono text-ash">
@@ -313,7 +306,6 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
           )}
         </div>
 
-        {/* Palette Footer */}
         <div className="px-4 py-2 border-t border-border/60 bg-obsidian/40 flex items-center justify-between text-[10px] font-mono text-ash">
           <div className="flex items-center gap-3">
             <span>↑↓ Navigate</span>

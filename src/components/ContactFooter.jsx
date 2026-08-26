@@ -85,8 +85,8 @@ export default function ContactFooter() {
   ]
 
   return (
-    <footer className="text-center pt-1">
-      <p className="text-xs sm:text-sm text-stone tracking-[0.25em] lowercase mb-6 select-none font-mono">
+    <footer className="text-center pt-1 pb-4">
+      <p className="text-xs sm:text-sm text-stone tracking-[0.25em] lowercase mb-8 sm:mb-10 select-none font-mono">
         let&apos;s build something.
       </p>
       <div className="flex items-center justify-center gap-8 sm:gap-10">
