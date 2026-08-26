@@ -3,9 +3,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 /**
  * CommandLayer — Quiet Semantic Command & Discovery Palette
  *
- * Responsive Discovery Pill Placement:
- * - Desktop (sm:): Top-center (`top-6 left-1/2`)
- * - Mobile (<sm): Floating bottom-center (`bottom-5 left-1/2`) for thumb reach & top-bar breathing room
+ * Deterministic, zero-dependency intent matcher that translates natural search terms
+ * into instant portfolio overlays, project links, or external destinations.
  */
 
 const COMMAND_COMMANDS = [
@@ -32,6 +31,38 @@ const COMMAND_COMMANDS = [
     category: 'OVERLAY',
     aliases: ['projects', 'project', 'work', 'archive', 'systems', 'more work', 'other work', 'atlas', 'history', 'codebases', 'repo'],
     action: 'overlay:moreWork'
+  },
+  {
+    id: 'research',
+    title: '◈ Research Lab',
+    subtitle: 'Current questions, experiments & active research systems',
+    category: 'OVERLAY',
+    aliases: ['research', 'research lab', 'researches', 'experiments', 'active research', 'lab', 'investigation', 'study'],
+    action: 'overlay:research'
+  },
+  {
+    id: 'synapse',
+    title: 'Aryntra Synapse ◈',
+    subtitle: 'Active Research · Knowledge & intelligence infrastructure',
+    category: 'RESEARCH',
+    aliases: ['synapse', 'aryntra synapse', '01_synapse'],
+    action: 'overlay:research'
+  },
+  {
+    id: 'continuumx',
+    title: 'ContinuumX ◈',
+    subtitle: 'Active Research · Experimental systems research',
+    category: 'RESEARCH',
+    aliases: ['continuumx', 'continuum', '02_continuumx'],
+    action: 'overlay:research'
+  },
+  {
+    id: 'refracto',
+    title: 'Aryntra Refracto ◈',
+    subtitle: 'Active Research · Context continuity & verified state',
+    category: 'RESEARCH',
+    aliases: ['refracto', 'aryntra refracto', '03_refracto'],
+    action: 'overlay:research'
   },
   {
     id: 'anveksha',
@@ -115,7 +146,7 @@ function matchScore(cmd, query) {
   return 0
 }
 
-export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreWork }) {
+export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreWork, onOpenResearch }) {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -149,6 +180,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         if (overlay === 'tools') onOpenTools()
         if (overlay === 'evolution') onOpenEvolution()
         if (overlay === 'moreWork') onOpenMoreWork()
+        if (overlay === 'research') onOpenResearch()
       } else if (action.startsWith('url:')) {
         const url = action.replace('url:', '')
         if (url.startsWith('mailto:')) {
@@ -158,7 +190,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         }
       }
     },
-    [handleClose, onOpenTools, onOpenEvolution, onOpenMoreWork]
+    [handleClose, onOpenTools, onOpenEvolution, onOpenMoreWork, onOpenResearch]
   )
 
   useEffect(() => {
@@ -247,7 +279,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
               setSelectedIndex(0)
             }}
             onKeyDown={handleInputKeyDown}
-            placeholder="Type intent or system (e.g. skills, instagram, anveksha, contact)..."
+            placeholder="Type intent or system (e.g. skills, research, anveksha, contact)..."
             className="w-full bg-transparent text-ivory placeholder:text-ash text-sm font-mono outline-none"
           />
           <button
@@ -262,7 +294,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length === 0 ? (
             <div className="p-4 text-center text-xs font-mono text-ash">
-              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">skills</span>, <span className="text-copper">instagram</span>, or <span className="text-copper">projects</span>.
+              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">research</span>, <span className="text-copper">skills</span>, or <span className="text-copper">projects</span>.
             </div>
           ) : (
             filteredCommands.map((cmd, idx) => {

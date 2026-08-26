@@ -5,6 +5,7 @@ import EvolutionTrigger from './components/EvolutionTrigger'
 import MinimalHero from './components/MinimalHero'
 import SelectedWork from './components/SelectedWork'
 import MoreWorkPanel from './components/MoreWorkPanel'
+import ResearchPanel from './components/ResearchPanel'
 import AryntraLink from './components/AryntraLink'
 import ContactFooter from './components/ContactFooter'
 import CommandLayer from './components/CommandLayer'
@@ -22,6 +23,10 @@ function App() {
 
   const handleOpenMoreWork = useCallback(() => {
     setActiveOverlay('moreWork')
+  }, [])
+
+  const handleOpenResearch = useCallback(() => {
+    setActiveOverlay('research')
   }, [])
 
   const handleCloseOverlay = useCallback(() => {
@@ -47,6 +52,7 @@ function App() {
         onOpenTools={handleToggleTools}
         onOpenEvolution={handleToggleEvolution}
         onOpenMoreWork={handleOpenMoreWork}
+        onOpenResearch={handleOpenResearch}
       />
 
       <main className={`w-full max-w-2xl px-6 py-12 flex flex-col items-center justify-center text-center space-y-10 sm:space-y-12 transition-all duration-300 ease-out ${isAnyOpen ? 'blur-sm opacity-30 select-none' : ''}`}>
@@ -60,6 +66,11 @@ function App() {
 
       <MoreWorkPanel
         isOpen={activeOverlay === 'moreWork'}
+        onClose={handleCloseOverlay}
+      />
+
+      <ResearchPanel
+        isOpen={activeOverlay === 'research'}
         onClose={handleCloseOverlay}
       />
     </PortfolioShell>
