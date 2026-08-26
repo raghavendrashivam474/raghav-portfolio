@@ -7,6 +7,7 @@ import SelectedWork from './components/SelectedWork'
 import MoreWorkPanel from './components/MoreWorkPanel'
 import AryntraLink from './components/AryntraLink'
 import ContactFooter from './components/ContactFooter'
+import CommandLayer from './components/CommandLayer'
 
 function App() {
   const [activeOverlay, setActiveOverlay] = useState(null)
@@ -40,6 +41,12 @@ function App() {
         isOpen={activeOverlay === 'evolution'}
         onToggle={handleToggleEvolution}
         onClose={handleCloseOverlay}
+      />
+
+      <CommandLayer
+        onOpenTools={handleToggleTools}
+        onOpenEvolution={handleToggleEvolution}
+        onOpenMoreWork={handleOpenMoreWork}
       />
 
       <main className={`w-full max-w-2xl px-6 py-12 flex flex-col items-center justify-center text-center space-y-10 sm:space-y-12 transition-all duration-300 ease-out ${isAnyOpen ? 'blur-sm opacity-30 select-none' : ''}`}>
