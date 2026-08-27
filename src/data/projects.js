@@ -12,6 +12,7 @@ export const activeMissions = [
     id: "01",
     title: "Aryntra Anveksha",
     tagline: "AI-Powered Preventive Health Screening Platform",
+    role: "AI / Health System",
     preview: [
       "Patient management and persistent patient records",
       "Structured screening sessions with deterministic risk assessment",
@@ -49,6 +50,7 @@ export const activeMissions = [
     id: "02",
     title: "Aryntra Aayaam",
     tagline: "Developer Project Awareness CLI",
+    role: "Developer CLI / System",
     preview: [
       "CLI foundation and application entry point",
       "CLI argument parsing",
@@ -76,6 +78,7 @@ export const activeMissions = [
     id: "03",
     title: "Aryntra Tarka",
     tagline: "Transparent Local-First AI Agent",
+    role: "Local-First AI Reasoning",
     preview: [
       "Natural-language request understanding",
       "Autonomous multi-step planning",
@@ -103,13 +106,38 @@ export const activeMissions = [
     status: "ACTIVE — Stable",
     github: "https://github.com/raghavendrashivam474/aryntra-tarka",
     apk: ""
+  },
+  {
+    id: "04",
+    title: "Aryntra Kavach",
+    tagline: "Enterprise AI Security Gateway & Open Data Proxy",
+    role: "AI Security Infrastructure",
+    preview: [
+      "Open Data Proxy for secure LLM request inspection and sanitization",
+      "PII masking, sensitive data redaction, and access control policies",
+      "Real-time prompt injection detection and policy enforcement",
+      "Audit logging, request tracing, and security posture analytics"
+    ],
+    problem:
+      "Enterprise AI adoption introduces critical security risks including unmonitored prompt traffic, PII leakage, prompt injection vulnerabilities, and lack of auditability.",
+    solution:
+      "Kavach is an enterprise AI security gateway and Open Data Proxy that inspects, sanitizes, redacts, and audits all prompt traffic between applications and LLM providers.",
+    tech: [
+      "Python 3",
+      "FastAPI",
+      "Go",
+      "Cryptography",
+      "OpenAPI",
+      "Docker",
+      "Tailwind CSS"
+    ],
+    impact:
+      "v1.0.0 — Active Security Gateway Architecture. Open Data Proxy core operational.",
+    status: "ACTIVE — Security Gateway",
+    github: "https://github.com/raghavendrashivam474/Aryntra-Kavach",
+    apk: ""
   }
 ]
-
-// ============================================================
-// PROJECT ARCHIVE — previous, experimental, and supporting work.
-// 8 Verified Repositories (OS-01 to OS-08).
-// ============================================================
 
 export const otherSystems = [
   {

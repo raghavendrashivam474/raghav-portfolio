@@ -41,30 +41,6 @@ const COMMAND_COMMANDS = [
     action: 'overlay:research'
   },
   {
-    id: 'synapse',
-    title: 'Aryntra Synapse ◈',
-    subtitle: 'Active Research · Knowledge & intelligence infrastructure',
-    category: 'RESEARCH',
-    aliases: ['synapse', 'aryntra synapse', '01_synapse'],
-    action: 'overlay:research'
-  },
-  {
-    id: 'continuumx',
-    title: 'ContinuumX ◈',
-    subtitle: 'Active Research · Experimental systems research',
-    category: 'RESEARCH',
-    aliases: ['continuumx', 'continuum', '02_continuumx'],
-    action: 'overlay:research'
-  },
-  {
-    id: 'refracto',
-    title: 'Aryntra Refracto ◈',
-    subtitle: 'Active Research · Context continuity & verified state',
-    category: 'RESEARCH',
-    aliases: ['refracto', 'aryntra refracto', '03_refracto'],
-    action: 'overlay:research'
-  },
-  {
     id: 'anveksha',
     title: 'Aryntra Anveksha ↗',
     subtitle: 'AI-Powered Preventive Health Screening Platform',
@@ -89,12 +65,44 @@ const COMMAND_COMMANDS = [
     action: 'url:https://github.com/raghavendrashivam474/aryntra-tarka'
   },
   {
+    id: 'kavach',
+    title: 'Aryntra Kavach ↗',
+    subtitle: 'Enterprise AI Security Gateway & Open Data Proxy',
+    category: 'FEATURED PROJECT',
+    aliases: ['kavach', 'aryntra kavach', 'security', 'gateway', 'proxy', 'data proxy', '04'],
+    action: 'url:https://github.com/raghavendrashivam474/Aryntra-Kavach'
+  },
+  {
+    id: 'synapse',
+    title: 'Aryntra Synapse ◈',
+    subtitle: 'Active Research · Knowledge & intelligence infrastructure',
+    category: 'RESEARCH',
+    aliases: ['synapse', 'aryntra synapse', '01_synapse'],
+    action: 'overlay:research'
+  },
+  {
+    id: 'continuumx',
+    title: 'ContinuumX ◈',
+    subtitle: 'Active Research · Experimental systems research',
+    category: 'RESEARCH',
+    aliases: ['continuumx', 'continuum', '02_continuumx'],
+    action: 'overlay:research'
+  },
+  {
+    id: 'refracto',
+    title: 'Aryntra Refracto ◈',
+    subtitle: 'Active Research · Context continuity & verified state',
+    category: 'RESEARCH',
+    aliases: ['refracto', 'aryntra refracto', '03_refracto'],
+    action: 'overlay:research'
+  },
+  {
     id: 'aryntra',
     title: 'Aryntra Platform ↗',
     subtitle: 'Where the work continues · arynta.com',
     category: 'CONTINUATION',
     aliases: ['aryntra', 'continuation', 'arynta', 'company', 'platform', 'vision'],
-    action: 'url:https://arynta.com'
+    action: 'url:https://aryntra.com'
   },
   {
     id: 'contact-email',
@@ -279,7 +287,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
               setSelectedIndex(0)
             }}
             onKeyDown={handleInputKeyDown}
-            placeholder="Type intent or system (e.g. skills, research, anveksha, contact)..."
+            placeholder="Type intent or system (e.g. skills, kavach, anveksha, contact)..."
             className="w-full bg-transparent text-ivory placeholder:text-ash text-sm font-mono outline-none"
           />
           <button
@@ -294,7 +302,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length === 0 ? (
             <div className="p-4 text-center text-xs font-mono text-ash">
-              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">research</span>, <span className="text-copper">skills</span>, or <span className="text-copper">projects</span>.
+              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">kavach</span>, <span className="text-copper">research</span>, or <span className="text-copper">projects</span>.
             </div>
           ) : (
             filteredCommands.map((cmd, idx) => {
