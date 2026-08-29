@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+﻿import { useState, useEffect, useRef, useCallback } from 'react'
 
 /**
  * CommandLayer — Quiet Semantic Command & Discovery Palette
@@ -8,6 +8,26 @@ import { useState, useEffect, useRef, useCallback } from 'react'
  */
 
 const COMMAND_COMMANDS = [
+  {
+    id: 'ongoing',
+    title: '◇ Ongoing Missions',
+    subtitle: 'Current systems being actively built and evolved · 4 active',
+    category: 'OVERLAY',
+    aliases: [
+      'ongoing',
+      'ongoing missions',
+      'missions',
+      'mission',
+      'active work',
+      'current work',
+      'current projects',
+      'active projects',
+      'selected work',
+      'featured',
+      'current'
+    ],
+    action: 'overlay:ongoing'
+  },
   {
     id: 'hands-on',
     title: '◈ Hands-on Layer',
@@ -99,7 +119,7 @@ const COMMAND_COMMANDS = [
   {
     id: 'aryntra',
     title: 'Aryntra Platform ↗',
-    subtitle: 'Where the work continues · arynta.com',
+    subtitle: 'Where the work continues · aryntra.com',
     category: 'CONTINUATION',
     aliases: ['aryntra', 'continuation', 'arynta', 'company', 'platform', 'vision'],
     action: 'url:https://aryntra.com'
@@ -154,7 +174,7 @@ function matchScore(cmd, query) {
   return 0
 }
 
-export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreWork, onOpenResearch }) {
+export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvolution, onOpenMoreWork, onOpenResearch }) {
   const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -185,6 +205,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
       handleClose()
       if (action.startsWith('overlay:')) {
         const overlay = action.split(':')[1]
+        if (overlay === 'ongoing') onOpenOngoing()
         if (overlay === 'tools') onOpenTools()
         if (overlay === 'evolution') onOpenEvolution()
         if (overlay === 'moreWork') onOpenMoreWork()
@@ -198,7 +219,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         }
       }
     },
-    [handleClose, onOpenTools, onOpenEvolution, onOpenMoreWork, onOpenResearch]
+    [handleClose, onOpenOngoing, onOpenTools, onOpenEvolution, onOpenMoreWork, onOpenResearch]
   )
 
   useEffect(() => {
@@ -287,7 +308,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
               setSelectedIndex(0)
             }}
             onKeyDown={handleInputKeyDown}
-            placeholder="Type intent or system (e.g. skills, kavach, anveksha, contact)..."
+            placeholder="Type intent or system (e.g. ongoing, kavach, research, archive)..."
             className="w-full bg-transparent text-ivory placeholder:text-ash text-sm font-mono outline-none"
           />
           <button
@@ -302,7 +323,7 @@ export default function CommandLayer({ onOpenTools, onOpenEvolution, onOpenMoreW
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length === 0 ? (
             <div className="p-4 text-center text-xs font-mono text-ash">
-              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">kavach</span>, <span className="text-copper">research</span>, or <span className="text-copper">projects</span>.
+              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">ongoing</span>, <span className="text-copper">kavach</span>, or <span className="text-copper">research</span>.
             </div>
           ) : (
             filteredCommands.map((cmd, idx) => {
