@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react'
+﻿import { useEffect, useRef, useCallback, useState } from 'react'
 import { researchSystems, researchMeta } from '../data/research'
 
 export default function ResearchPanel({ isOpen, onClose }) {
@@ -139,7 +139,7 @@ export default function ResearchPanel({ isOpen, onClose }) {
               const isSelected = activeResearchId === system.id
 
               return (
-                <div
+                <a href={system.link || "#"} target="_blank" rel="noopener noreferrer"
                   key={system.id}
                   onClick={() => setActiveResearchId(system.id)}
                   className={`group relative overflow-hidden rounded-xl border p-5 sm:p-6 text-left transition-all duration-200 cursor-pointer ${
@@ -153,8 +153,13 @@ export default function ResearchPanel({ isOpen, onClose }) {
                       <span className="text-xs font-mono text-copper/90 font-semibold tracking-wider">
                         {system.number} /
                       </span>
-                      <h4 className="text-lg sm:text-2xl font-semibold text-ivory tracking-tight group-hover:text-oxide transition-colors">
+                      <h4 className="text-lg sm:text-2xl font-semibold text-ivory tracking-tight group-hover:text-oxide transition-colors flex items-center gap-2">
                         {system.name}
+                        {system.link && (
+                          <span className="text-[0.9em] font-sans text-copper/60 group-hover:text-copper transition-all duration-300 transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                            ↗
+                          </span>
+                        )}
                       </h4>
                     </div>
 
@@ -191,9 +196,7 @@ export default function ResearchPanel({ isOpen, onClose }) {
                     className={`pointer-events-none absolute left-0 top-3 bottom-3 w-[2px] transition-all duration-200 ${
                       isSelected ? 'bg-copper' : 'bg-copper/0 group-hover:bg-copper/40'
                     }`}
-                    aria-hidden="true"
-                  />
-                </div>
+                    aria-hidden="true" />`n                </a>
               )
             })}
           </div>

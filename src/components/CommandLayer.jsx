@@ -9,6 +9,22 @@
 
 const COMMAND_COMMANDS = [
   {
+    id: 'madhav',
+    title: '◈ Madhav Research',
+    subtitle: 'Knowledge & intelligence substrate · Active Research',
+    category: 'OVERLAY',
+    aliases: [
+      'madhav',
+      'knowledge',
+      'knowledge substrate',
+      'intelligence',
+      'memory',
+      'provenance',
+      'claims'
+    ],
+    action: 'overlay:research'
+  },
+  {
     id: 'ongoing',
     title: '◇ Ongoing Missions',
     subtitle: 'Current systems being actively built and evolved · 4 active',
@@ -115,7 +131,16 @@ const COMMAND_COMMANDS = [
     category: 'RESEARCH',
     aliases: ['refracto', 'aryntra refracto', '03_refracto'],
     action: 'overlay:research'
-  },
+  }    ,
+    {
+      id: "madhav",
+      title: "Madhav",
+      name: "Madhav",
+      aliases: ["madhav", "knowledge", "knowledge substrate", "intelligence", "memory", "provenance", "claims"],
+      /* ACTION REQUIRED: Update this execution function to match your other commands (e.g. navigate, dispatch) */
+      action: () => console.log("Madhav triggered"),
+      onSelect: () => console.log("Madhav triggered")
+    },
   {
     id: 'aryntra',
     title: 'Aryntra Platform ↗',
@@ -379,3 +404,5 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
     </>
   )
 }
+
+
