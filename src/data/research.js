@@ -42,7 +42,7 @@ export const researchSystems = [
     status: "ACTIVE · RESEARCH",
     description: "Voice identity infrastructure as a software primitive.",
     focus: ["Voice Identity", "Auth", "Provenance"],
-    link: "https://github.com/raghav-at/avni"
+    link: "https://github.com/raghavendrashivam474/aryntra-avni"
   }
 ];
 

@@ -6,7 +6,7 @@ export const activeMissions = [
     description: "Personalized intelligence layer for seamless human-AI interaction.",
     tech: ["Python", "FastAPI", "OpenAI SDK", "Ollama"],
     status: "ACTIVE — Companion",
-    github: "https://github.com/raghav-at/nav"
+    github: "https://github.com/raghavendrashivam474/nav"
   },
   {
     id: "straloc",
@@ -15,7 +15,7 @@ export const activeMissions = [
     description: "Evolutionary intelligence layer: Observe → Detect → Reason. Currently: Observe.",
     tech: ["Rust", "Intelligence Models", "System Observability"],
     status: "ACTIVE — Observe",
-    github: "https://github.com/raghav-at/straloc"
+    github: "https://github.com/raghavendrashivam474/aryntra-straloc"
   },
   {
     id: "flux",
@@ -24,7 +24,7 @@ export const activeMissions = [
     description: "Event-driven architecture primitive for systemic data flow.",
     tech: ["Go", "TCP", "Distributed Systems"],
     status: "ACTIVE — Flow",
-    github: "https://github.com/raghav-at/flux"
+    github: "https://github.com/raghavendrashivam474/aryntra-flux"
   }
 ];
 
