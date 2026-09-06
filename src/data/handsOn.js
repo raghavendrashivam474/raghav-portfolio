@@ -1,54 +1,54 @@
-// src/data/handsOn.js
-// S10: Living Current Stack Data Model
-// Focuses on what is actively being built with.
-// Evidence is retained but moved to a secondary inspection layer.
-
 export const currentStack = [
   {
     id: "01",
     category: "Languages",
     items: [
-      { name: "TypeScript", evidence: ["Aryntra Anveksha", "Aryntra Tarka"] },
-      { name: "Python",     evidence: ["Aryntra Anveksha", "Aryntra Backtrace"] },
-      { name: "Go",         evidence: ["Aryntra Aayaam"] },
-      { name: "C++",        evidence: ["System Foundations"] }
+      { name: "Python", evidence: ["NAV", "Research Lab"] },
+      { name: "Rust", evidence: ["Aryntra Straloc"] },
+      { name: "TypeScript", evidence: ["Portfolio", "Web Systems"] },
+      { name: "Go", evidence: ["Aryntra Flux", "Aryntra Aayaam"] },
+      { name: "C++", evidence: ["Systems Foundations"] }
     ]
   },
   {
     id: "02",
     category: "Build",
     items: [
-      { name: "React",   evidence: ["Aryntra Anveksha", "Aryntra Tarka", "GradeFlow"] },
-      { name: "Next.js", evidence: ["Aryntra Anveksha"] },
-      { name: "FastAPI", evidence: ["Aryntra Anveksha", "Aryntra Tarka"] },
-      { name: "Node.js", evidence: ["Syaahi"] }
+      { name: "React", evidence: ["Portfolio", "Tarka"] },
+      { name: "Next.js", evidence: ["Anveksha"] },
+      { name: "FastAPI", evidence: ["NAV", "Anveksha", "Tarka"] },
+      { name: "Node.js", evidence: ["Tooling"] },
+      { name: "Vite", evidence: ["Portfolio", "Tarka"] }
     ]
   },
   {
     id: "03",
     category: "Data",
     items: [
-      { name: "PostgreSQL", evidence: ["Aryntra Anveksha"] },
-      { name: "SQLite",     evidence: ["Aryntra Tarka"] },
-      { name: "Supabase",   evidence: ["GradeFlow"] }
+      { name: "PostgreSQL", evidence: ["Flux Persistence"] },
+      { name: "SQLite", evidence: ["Tarka", "Local Memory"] },
+      { name: "Supabase", evidence: ["GradeFlow"] },
+      { name: "Vector Indexing", evidence: ["NAV Memory", "Synapse"] }
     ]
   },
   {
     id: "04",
     category: "AI",
     items: [
-      { name: "Ollama",     evidence: ["Aryntra Anveksha", "Aryntra Tarka"] },
-      { name: "RAG",        evidence: ["Aryntra Anveksha"] },
-      { name: "OpenAI SDK", evidence: ["Aryntra Anveksha"] }
+      { name: "OpenAI SDK", evidence: ["NAV", "Anveksha"] },
+      { name: "Ollama", evidence: ["NAV", "Tarka", "Anveksha"] },
+      { name: "RAG", evidence: ["Knowledge Retrieval"] },
+      { name: "AI Agents", evidence: ["Tarka", "Autonomy Research"] }
     ]
   },
   {
     id: "05",
     category: "Systems & Tooling",
     items: [
-      { name: "Docker",           evidence: ["System Foundations"] },
-      { name: "Git & GitHub",     evidence: ["All Repositories"] },
-      { name: "CLI Architecture", evidence: ["Aryntra Aayaam"] }
+      { name: "Docker", evidence: ["Deployment", "Kavach"] },
+      { name: "Git & GitHub", evidence: ["All Codebases"] },
+      { name: "REST APIs", evidence: ["NAV", "Flux"] },
+      { name: "CLI Architecture", evidence: ["Aayaam", "Straloc"] }
     ]
   }
 ]

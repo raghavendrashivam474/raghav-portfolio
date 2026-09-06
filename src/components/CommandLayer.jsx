@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 /**
  * CommandLayer — Quiet Semantic Command & Discovery Palette
@@ -10,7 +10,7 @@
 const COMMAND_COMMANDS = [
   {
     id: 'ongoing',
-    title: '◇ Ongoing Missions',
+    title: '? Ongoing Missions',
     subtitle: 'Current systems being actively built and evolved · 4 active',
     category: 'OVERLAY',
     aliases: [
@@ -30,7 +30,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'hands-on',
-    title: '◈ Hands-on Layer',
+    title: '? Hands-on Layer',
     subtitle: 'Current working stack & tools',
     category: 'OVERLAY',
     aliases: ['skills', 'skill', 'tools', 'stack', 'tech', 'technologies', 'hands-on', 'hands on', 'use', 'toolkit', 'languages', 'frameworks'],
@@ -38,7 +38,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'evolution',
-    title: '◇ Evolution Progression',
+    title: '? Evolution Progression',
     subtitle: 'Builder progression & mental model shift',
     category: 'OVERLAY',
     aliases: ['evolution', 'journey', 'growth', 'progress', 'mindset', 'thinking', 'builder', 'how i build', 'stage', 'philosophy'],
@@ -54,7 +54,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'research',
-    title: '◈ Research Lab',
+    title: '? Research Lab',
     subtitle: 'Current questions, experiments & active research systems',
     category: 'OVERLAY',
     aliases: ['research', 'research lab', 'researches', 'experiments', 'active research', 'lab', 'investigation', 'study'],
@@ -62,39 +62,39 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'anveksha',
-    title: 'Aryntra Anveksha ↗',
+    title: 'Aryntra Anveksha ?',
     subtitle: 'AI-Powered Preventive Health Screening Platform',
     category: 'FEATURED PROJECT',
-    aliases: ['anveksha', 'anvek', 'health', 'screening', 'preventive', '01'],
+    aliases: ['nav', 'companion', 'ai', '01'],
     action: 'url:https://github.com/raghavendrashivam474/Aryntra_Anveksha'
   },
   {
     id: 'aayaam',
-    title: 'Aryntra Aayaam ↗',
+    title: 'Aryntra Aayaam ?',
     subtitle: 'Developer Project Awareness CLI in Go',
     category: 'FEATURED PROJECT',
-    aliases: ['aayaam', 'aayam', 'cli', 'awareness', 'go cli', '02'],
+    aliases: ['straloc', 'evolution', 'intelligence', '02'],
     action: 'url:https://github.com/raghavendrashivam474/aryntra-aayaam'
   },
   {
     id: 'tarka',
-    title: 'Aryntra Tarka ↗',
+    title: 'Aryntra Tarka ?',
     subtitle: 'Transparent Local-First Autonomous AI Agent',
     category: 'FEATURED PROJECT',
-    aliases: ['tarka', 'agent', 'autonomous', 'local ai', 'agentic', '03'],
+    aliases: ['flux', 'data orchestration', 'flow', '03'],
     action: 'url:https://github.com/raghavendrashivam474/aryntra-tarka'
   },
   {
     id: 'kavach',
-    title: 'Aryntra Kavach ↗',
+    title: 'Aryntra Kavach ?',
     subtitle: 'Enterprise AI Security Gateway & Open Data Proxy',
     category: 'FEATURED PROJECT',
-    aliases: ['kavach', 'aryntra kavach', 'security', 'gateway', 'proxy', 'data proxy', '04'],
+    aliases: ['avni', 'voice identity', 'audio', '05'],
     action: 'url:https://github.com/raghavendrashivam474/Aryntra-Kavach'
   },
   {
     id: 'synapse',
-    title: 'Aryntra Synapse ◈',
+    title: 'Aryntra Synapse ?',
     subtitle: 'Active Research · Knowledge & intelligence infrastructure',
     category: 'RESEARCH',
     aliases: ['synapse', 'aryntra synapse', '01_synapse'],
@@ -102,7 +102,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'continuumx',
-    title: 'ContinuumX ◈',
+    title: 'ContinuumX ?',
     subtitle: 'Active Research · Experimental systems research',
     category: 'RESEARCH',
     aliases: ['continuumx', 'continuum', '02_continuumx'],
@@ -110,7 +110,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'refracto',
-    title: 'Aryntra Refracto ◈',
+    title: 'Aryntra Refracto ?',
     subtitle: 'Active Research · Context continuity & verified state',
     category: 'RESEARCH',
     aliases: ['refracto', 'aryntra refracto', '03_refracto'],
@@ -118,7 +118,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'madhav',
-    title: 'Madhav ◈',
+    title: 'Madhav ?',
     subtitle: 'Active Research · Knowledge & intelligence substrate',
     category: 'RESEARCH',
     aliases: ['madhav', 'knowledge', 'knowledge substrate', 'intelligence', 'memory', 'provenance', 'claims', '04_madhav'],
@@ -126,7 +126,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'aryntra',
-    title: 'Aryntra Platform ↗',
+    title: 'Aryntra Platform ?',
     subtitle: 'Where the work continues · aryntra.com',
     category: 'CONTINUATION',
     aliases: ['aryntra', 'continuation', 'arynta', 'company', 'platform', 'vision'],
@@ -134,7 +134,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'contact-email',
-    title: 'Email Raghavendra ↗',
+    title: 'Email Raghavendra ?',
     subtitle: 'raghavendrashivam474@gmail.com',
     category: 'CONTACT',
     aliases: ['contact', 'email', 'mail', 'reach', 'hire', 'message', 'gmail', 'raghavendrashivam474@gmail.com'],
@@ -142,7 +142,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'github-profile',
-    title: 'GitHub Profile ↗',
+    title: 'GitHub Profile ?',
     subtitle: 'github.com/raghavendrashivam474',
     category: 'CONTACT',
     aliases: ['github', 'git', 'code', 'profile', 'repositories', 'raghavendrashivam474'],
@@ -150,7 +150,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'linkedin-profile',
-    title: 'LinkedIn Profile ↗',
+    title: 'LinkedIn Profile ?',
     subtitle: 'linkedin.com/in/raghavendra-singh-2335292ab/',
     category: 'CONTACT',
     aliases: ['linkedin', 'in', 'network', 'profile', 'experience', 'raghavendra-singh'],
@@ -158,7 +158,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'instagram-profile',
-    title: 'Instagram Profile ↗',
+    title: 'Instagram Profile ?',
     subtitle: '@raghavendra.builds · instagram.com/raghavendra.builds',
     category: 'CONTACT',
     aliases: ['instagram', 'insta', 'ig', 'social', 'socials', 'raghavendra.builds', 'photos', 'builds'],
@@ -307,7 +307,7 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-copper to-transparent shrink-0" />
 
         <div className="p-4 border-b border-border/60 flex items-center gap-3">
-          <span className="text-copper font-mono text-sm">⌘</span>
+          <span className="text-copper font-mono text-sm">?</span>
           <input
             ref={inputRef}
             type="text"
@@ -368,7 +368,7 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
                       isSelected ? 'text-copper opacity-100' : 'opacity-0'
                     }`}
                   >
-                    ↵
+                    ?
                   </span>
                 </div>
               )
@@ -378,8 +378,8 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
 
         <div className="px-4 py-2 border-t border-border/60 bg-obsidian/40 flex items-center justify-between text-[10px] font-mono text-ash">
           <div className="flex items-center gap-3">
-            <span>↑↓ Navigate</span>
-            <span>↵ Select</span>
+            <span>?? Navigate</span>
+            <span>? Select</span>
             <span>ESC Close</span>
           </div>
           <span className="text-copper/80">Semantic Command</span>

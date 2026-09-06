@@ -1,4 +1,5 @@
-﻿export default function SelectedWork({ onOpenOngoing, onOpenMoreWork, onOpenResearch }) {
+import { activeMissions } from '../data/projects'
+export default function SelectedWork({ onOpenOngoing, onOpenMoreWork, onOpenResearch }) {
   return (
     <section className="w-full max-w-xl mx-auto flex flex-col items-center justify-center text-center">
       <h2 className="text-micro text-stone tracking-[0.25em] uppercase mb-4 select-none font-mono text-center font-medium">
@@ -26,7 +27,7 @@
 
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-mono uppercase tracking-wider text-ash border border-border/60 bg-graphite/90 px-1.5 py-0.5 rounded">
-              04 Active
+              {String(activeMissions.length).padStart(2, "0")} Active
             </span>
             <span
               className="text-copper text-sm opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
