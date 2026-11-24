@@ -4,6 +4,7 @@ import { activeMissions } from '../data/projects'
 export default function OngoingMissionsPanel({ isOpen, onClose }) {
   const panelRef = useRef(null)
   const closeBtnRef = useRef(null)
+
   const count = activeMissions.length
   const countLabel = String(count).padStart(2, '0')
 
@@ -74,17 +75,15 @@ export default function OngoingMissionsPanel({ isOpen, onClose }) {
                   Ongoing Missions
                 </span>
               </div>
-
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-semibold text-ivory tracking-tight">
                     Current systems being actively built and evolved
                   </h3>
                   <p className="mt-1.5 text-sm sm:text-base text-stone leading-relaxed max-w-xl">
-                    The primary active body of engineering work. Four focused systems spanning preventive AI, developer awareness, autonomous agents, and enterprise security.
+                    The primary active body of engineering work. Core active systems spanning mobile-first development workflows and local-first enterprise asset management.
                   </p>
                 </div>
-
                 <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-ash">
                     Core Work
@@ -132,7 +131,6 @@ export default function OngoingMissionsPanel({ isOpen, onClose }) {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 content-start">
             {activeMissions.map((project) => {
               const cleanTitle = project.title.replace('Aryntra ', '')
-
               return (
                 <a
                   key={project.id}
@@ -155,7 +153,6 @@ export default function OngoingMissionsPanel({ isOpen, onClose }) {
                           </span>
                         )}
                       </div>
-
                       <span className="inline-flex items-center px-2 py-0.5 rounded-full border border-copper/30 bg-copper/10 text-[10px] font-mono uppercase tracking-wider text-copper shrink-0">
                         {project.status.split('—')[0].trim()}
                       </span>
@@ -177,12 +174,10 @@ export default function OngoingMissionsPanel({ isOpen, onClose }) {
                       </p>
                     </div>
 
-                    {/* Problem/Solution Summary */}
-                    {project.solution && (
-                      <p className="text-xs sm:text-sm text-stone leading-relaxed font-sans mb-4 line-clamp-3">
-                        {project.solution}
-                      </p>
-                    )}
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-stone leading-relaxed font-sans mb-4">
+                      {project.description}
+                    </p>
                   </div>
 
                   {/* Tech stack + Open Repo Link */}
@@ -203,7 +198,6 @@ export default function OngoingMissionsPanel({ isOpen, onClose }) {
                             </span>
                           )}
                     </div>
-
                     <span className="text-[10px] font-mono uppercase tracking-wider text-copper/80 group-hover:text-copper transition-colors shrink-0 inline-flex items-center gap-1">
                       <span>Explore Repo</span>
                       <span aria-hidden="true">↗</span>

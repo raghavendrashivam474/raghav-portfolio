@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+﻿import { useState, useEffect, useRef, useCallback } from 'react'
 
 /**
  * CommandLayer — Quiet Semantic Command & Discovery Palette
@@ -6,12 +6,11 @@ import { useState, useEffect, useRef, useCallback } from 'react'
  * Deterministic, zero-dependency intent matcher that translates natural search terms
  * into instant portfolio overlays, project links, or external destinations.
  */
-
 const COMMAND_COMMANDS = [
   {
     id: 'ongoing',
-    title: '? Ongoing Missions',
-    subtitle: 'Current systems being actively built and evolved · 4 active',
+    title: '◇ Ongoing Missions',
+    subtitle: 'Current systems being actively built and evolved · 2 active flagships',
     category: 'OVERLAY',
     aliases: [
       'ongoing',
@@ -24,13 +23,15 @@ const COMMAND_COMMANDS = [
       'active projects',
       'selected work',
       'featured',
-      'current'
+      'current',
+      'nomad',
+      'workgrid'
     ],
     action: 'overlay:ongoing'
   },
   {
     id: 'hands-on',
-    title: '? Hands-on Layer',
+    title: '◈ Hands-on Layer',
     subtitle: 'Current working stack & tools',
     category: 'OVERLAY',
     aliases: ['skills', 'skill', 'tools', 'stack', 'tech', 'technologies', 'hands-on', 'hands on', 'use', 'toolkit', 'languages', 'frameworks'],
@@ -38,7 +39,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'evolution',
-    title: '? Evolution Progression',
+    title: '◇ Evolution Progression',
     subtitle: 'Builder progression & mental model shift',
     category: 'OVERLAY',
     aliases: ['evolution', 'journey', 'growth', 'progress', 'mindset', 'thinking', 'builder', 'how i build', 'stage', 'philosophy'],
@@ -47,94 +48,70 @@ const COMMAND_COMMANDS = [
   {
     id: 'archive',
     title: '+ Project Archive',
-    subtitle: '8 verified public systems & work atlas',
+    subtitle: 'Supporting systems & work atlas · Syaahi & Shyam',
     category: 'OVERLAY',
-    aliases: ['projects', 'project', 'work', 'archive', 'systems', 'more work', 'other work', 'atlas', 'history', 'codebases', 'repo'],
+    aliases: ['projects', 'project', 'work', 'archive', 'systems', 'more work', 'other work', 'atlas', 'history', 'codebases', 'repo', 'syaahi', 'shyam'],
     action: 'overlay:moreWork'
   },
   {
     id: 'research',
-    title: '? Research Lab',
-    subtitle: 'Current questions, experiments & active research systems',
+    title: '◈ Research Lab',
+    subtitle: 'Active research exploration · Aryntra Synapse',
     category: 'OVERLAY',
-    aliases: ['research', 'research lab', 'researches', 'experiments', 'active research', 'lab', 'investigation', 'study'],
+    aliases: ['research', 'research lab', 'researches', 'experiments', 'active research', 'lab', 'investigation', 'study', 'synapse'],
     action: 'overlay:research'
   },
   {
-    id: 'anveksha',
-    title: 'Aryntra Anveksha ?',
-    subtitle: 'AI-Powered Preventive Health Screening Platform',
-    category: 'FEATURED PROJECT',
-    aliases: ['nav', 'companion', 'ai', '01'],
-    action: 'url:https://github.com/raghavendrashivam474/Aryntra_Anveksha'
+    id: 'nomad',
+    title: 'Nomad ↗',
+    subtitle: 'Mobile-First Development Lab · Flutter & Dart',
+    category: 'ONGOING MISSION',
+    aliases: ['nomad', 'mobile', 'flutter', 'dart', 'dev lab', '01'],
+    action: 'url:https://github.com/raghavendrashivam474/nomad'
   },
   {
-    id: 'aayaam',
-    title: 'Aryntra Aayaam ?',
-    subtitle: 'Developer Project Awareness CLI in Go',
-    category: 'FEATURED PROJECT',
-    aliases: ['straloc', 'evolution', 'intelligence', '02'],
-    action: 'url:https://github.com/raghavendrashivam474/aryntra-aayaam'
-  },
-  {
-    id: 'tarka',
-    title: 'Aryntra Tarka ?',
-    subtitle: 'Transparent Local-First Autonomous AI Agent',
-    category: 'FEATURED PROJECT',
-    aliases: ['flux', 'data orchestration', 'flow', '03'],
-    action: 'url:https://github.com/raghavendrashivam474/aryntra-tarka'
-  },
-  {
-    id: 'kavach',
-    title: 'Aryntra Kavach ?',
-    subtitle: 'Enterprise AI Security Gateway & Open Data Proxy',
-    category: 'FEATURED PROJECT',
-    aliases: ['avni', 'voice identity', 'audio', '05'],
-    action: 'url:https://github.com/raghavendrashivam474/Aryntra-Kavach'
+    id: 'workgrid',
+    title: 'Workgrid ↗',
+    subtitle: 'Local-First Enterprise Asset Management · C# & .NET',
+    category: 'ONGOING MISSION',
+    aliases: ['workgrid', 'dotnet', 'csharp', 'enterprise', 'asset management', '02'],
+    action: 'url:https://github.com/raghavendrashivam474/WorkGrid'
   },
   {
     id: 'synapse',
-    title: 'Aryntra Synapse ?',
-    subtitle: 'Active Research · Knowledge & intelligence infrastructure',
-    category: 'RESEARCH',
-    aliases: ['synapse', 'aryntra synapse', '01_synapse'],
-    action: 'overlay:research'
+    title: 'Aryntra Synapse ↗',
+    subtitle: 'Adaptive Context Engineering & Memory Persistence in RAG',
+    category: 'RESEARCH LAB',
+    aliases: ['synapse', 'aryntra synapse', 'rag', 'context', 'memory', '03'],
+    action: 'url:https://github.com/raghavendrashivam474/aryntra-synapse'
   },
   {
-    id: 'continuumx',
-    title: 'ContinuumX ?',
-    subtitle: 'Active Research · Experimental systems research',
-    category: 'RESEARCH',
-    aliases: ['continuumx', 'continuum', '02_continuumx'],
-    action: 'overlay:research'
+    id: 'syaahi',
+    title: 'Syaahi ↗',
+    subtitle: 'Supporting Platform for Poetry & Human Expression · Flutter',
+    category: 'SUPPORTING ARCHIVE',
+    aliases: ['syaahi', 'poetry', 'letters', 'flutter', 'expression', '04'],
+    action: 'url:https://github.com/raghavendrashivam474/syaahi'
   },
   {
-    id: 'refracto',
-    title: 'Aryntra Refracto ?',
-    subtitle: 'Active Research · Context continuity & verified state',
-    category: 'RESEARCH',
-    aliases: ['refracto', 'aryntra refracto', '03_refracto'],
-    action: 'overlay:research'
-  },
-  {
-    id: 'madhav',
-    title: 'Madhav ?',
-    subtitle: 'Active Research · Knowledge & intelligence substrate',
-    category: 'RESEARCH',
-    aliases: ['madhav', 'knowledge', 'knowledge substrate', 'intelligence', 'memory', 'provenance', 'claims', '04_madhav'],
-    action: 'overlay:research'
+    id: 'shyam',
+    title: 'Shyam ↗',
+    subtitle: 'Supporting Decentralized Personal Computing Ecosystem · Python',
+    category: 'SUPPORTING ARCHIVE',
+    aliases: ['shyam', 'decentralized', 'orchestration', 'computing', '05'],
+    action: 'url:https://github.com/raghavendrashivam474/shyam'
   },
   {
     id: 'aryntra',
-    title: 'Aryntra Platform ?',
+    title: 'Aryntra Platform ↗',
     subtitle: 'Where the work continues · aryntra.com',
     category: 'CONTINUATION',
-    aliases: ['aryntra', 'continuation', 'arynta', 'company', 'platform', 'vision'],
+    aliases: ['aryntra', 'continuation', 'company', 'platform', 'vision'],
     action: 'url:https://aryntra.com'
   },
   {
     id: 'contact-email',
-    title: 'Email Raghavendra ?',
+    title: 'Email Raghavendra ↗',
     subtitle: 'raghavendrashivam474@gmail.com',
     category: 'CONTACT',
     aliases: ['contact', 'email', 'mail', 'reach', 'hire', 'message', 'gmail', 'raghavendrashivam474@gmail.com'],
@@ -142,7 +119,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'github-profile',
-    title: 'GitHub Profile ?',
+    title: 'GitHub Profile ↗',
     subtitle: 'github.com/raghavendrashivam474',
     category: 'CONTACT',
     aliases: ['github', 'git', 'code', 'profile', 'repositories', 'raghavendrashivam474'],
@@ -150,7 +127,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'linkedin-profile',
-    title: 'LinkedIn Profile ?',
+    title: 'LinkedIn Profile ↗',
     subtitle: 'linkedin.com/in/raghavendra-singh-2335292ab/',
     category: 'CONTACT',
     aliases: ['linkedin', 'in', 'network', 'profile', 'experience', 'raghavendra-singh'],
@@ -158,7 +135,7 @@ const COMMAND_COMMANDS = [
   },
   {
     id: 'instagram-profile',
-    title: 'Instagram Profile ?',
+    title: 'Instagram Profile ↗',
     subtitle: '@raghavendra.builds · instagram.com/raghavendra.builds',
     category: 'CONTACT',
     aliases: ['instagram', 'insta', 'ig', 'social', 'socials', 'raghavendra.builds', 'photos', 'builds'],
@@ -212,6 +189,7 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
     (action) => {
       handleClose()
       if (!action) return
+
       if (action.startsWith('overlay:')) {
         const overlay = action.split(':')[1]
         if (overlay === 'ongoing') onOpenOngoing()
@@ -307,7 +285,7 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-copper to-transparent shrink-0" />
 
         <div className="p-4 border-b border-border/60 flex items-center gap-3">
-          <span className="text-copper font-mono text-sm">?</span>
+          <span className="text-copper font-mono text-sm">◇</span>
           <input
             ref={inputRef}
             type="text"
@@ -317,7 +295,7 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
               setSelectedIndex(0)
             }}
             onKeyDown={handleInputKeyDown}
-            placeholder="Type intent or system (e.g. ongoing, kavach, research, archive)..."
+            placeholder="Type intent or system (e.g. nomad, workgrid, synapse, syaahi)..."
             className="w-full bg-transparent text-ivory placeholder:text-ash text-sm font-mono outline-none"
           />
           <button
@@ -332,12 +310,11 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
         <div className="max-h-80 overflow-y-auto p-2 space-y-1">
           {filteredCommands.length === 0 ? (
             <div className="p-4 text-center text-xs font-mono text-ash">
-              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">ongoing</span>, <span className="text-copper">kavach</span>, or <span className="text-copper">research</span>.
+              No direct matches for &quot;{query}&quot;. Try <span className="text-copper">nomad</span>, <span className="text-copper">workgrid</span>, <span className="text-copper">synapse</span>, or <span className="text-copper">syaahi</span>.
             </div>
           ) : (
             filteredCommands.map((cmd, idx) => {
               const isSelected = idx === selectedIndex
-
               return (
                 <div
                   key={cmd.id}
@@ -362,13 +339,12 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
                       {cmd.subtitle}
                     </p>
                   </div>
-
                   <span
                     className={`text-xs font-mono transition-opacity ${
                       isSelected ? 'text-copper opacity-100' : 'opacity-0'
                     }`}
                   >
-                    ?
+                    ↗
                   </span>
                 </div>
               )
@@ -378,8 +354,8 @@ export default function CommandLayer({ onOpenOngoing, onOpenTools, onOpenEvoluti
 
         <div className="px-4 py-2 border-t border-border/60 bg-obsidian/40 flex items-center justify-between text-[10px] font-mono text-ash">
           <div className="flex items-center gap-3">
-            <span>?? Navigate</span>
-            <span>? Select</span>
+            <span>↑↓ Navigate</span>
+            <span>↵ Select</span>
             <span>ESC Close</span>
           </div>
           <span className="text-copper/80">Semantic Command</span>

@@ -6,6 +6,8 @@ export default function ResearchPanel({ isOpen, onClose }) {
   const closeBtnRef = useRef(null)
   const [activeResearchId, setActiveResearchId] = useState('synapse')
 
+  const countLabel = String(researchSystems.length).padStart(2, '0')
+
   const handleClose = useCallback(() => {
     setActiveResearchId('synapse')
     onClose()
@@ -78,17 +80,15 @@ export default function ResearchPanel({ isOpen, onClose }) {
                   {researchMeta.heading}
                 </span>
               </div>
-
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-semibold text-ivory tracking-tight">
                     Active System Investigations
                   </h3>
                   <p className="mt-1.5 text-sm sm:text-base text-stone leading-relaxed max-w-xl">
-                    {researchMeta.framing} What I am exploring before conclusions are finalized.
+                    {researchMeta.framing} Exploration into adaptive context engineering and memory persistence.
                   </p>
                 </div>
-
                 <div className="hidden sm:flex flex-col items-end gap-1 shrink-0">
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-ash">
                     Status
@@ -129,7 +129,7 @@ export default function ResearchPanel({ isOpen, onClose }) {
               <span>Non-Commercial Layer</span>
             </div>
             <span className="text-[11px] font-mono text-copper">
-              03 Active
+              {countLabel} Active
             </span>
           </div>
 
@@ -137,10 +137,12 @@ export default function ResearchPanel({ isOpen, onClose }) {
           <div className="relative z-10 grid grid-cols-1 gap-4 sm:gap-6">
             {researchSystems.map((system) => {
               const isSelected = activeResearchId === system.id
-
               return (
-                <a href={system.link || "#"} target="_blank" rel="noopener noreferrer"
+                <a
                   key={system.id}
+                  href={system.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setActiveResearchId(system.id)}
                   className={`group relative overflow-hidden rounded-xl border p-5 sm:p-6 text-left transition-all duration-200 cursor-pointer ${
                     isSelected
@@ -150,9 +152,11 @@ export default function ResearchPanel({ isOpen, onClose }) {
                 >
                   <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
                     <div className="flex items-center gap-3">
-                      <span className="text-xs font-mono text-copper/90 font-semibold tracking-wider">
-                        {system.number} /
-                      </span>
+                      {system.number && (
+                        <span className="text-xs font-mono text-copper/90 font-semibold tracking-wider">
+                          {system.number} /
+                        </span>
+                      )}
                       <h4 className="text-lg sm:text-2xl font-semibold text-ivory tracking-tight group-hover:text-oxide transition-colors flex items-center gap-2">
                         {system.name}
                         {system.link && (
@@ -162,15 +166,16 @@ export default function ResearchPanel({ isOpen, onClose }) {
                         )}
                       </h4>
                     </div>
-
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-copper/30 bg-copper/10 text-[10px] font-mono uppercase tracking-wider text-copper">
                       {system.status}
                     </span>
                   </div>
 
-                  <p className="text-sm sm:text-base font-medium text-copper/90 mb-2">
-                    {system.tagline}
-                  </p>
+                  {system.tagline && (
+                    <p className="text-sm sm:text-base font-medium text-copper/90 mb-2 font-sans">
+                      {system.tagline}
+                    </p>
+                  )}
 
                   <p className="text-sm text-stone leading-relaxed max-w-3xl mb-4 font-sans">
                     {system.description}
@@ -196,7 +201,9 @@ export default function ResearchPanel({ isOpen, onClose }) {
                     className={`pointer-events-none absolute left-0 top-3 bottom-3 w-[2px] transition-all duration-200 ${
                       isSelected ? 'bg-copper' : 'bg-copper/0 group-hover:bg-copper/40'
                     }`}
-                    aria-hidden="true" />`n                </a>
+                    aria-hidden="true"
+                  />
+                </a>
               )
             })}
           </div>

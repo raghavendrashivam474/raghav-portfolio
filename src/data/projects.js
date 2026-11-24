@@ -1,40 +1,41 @@
-export const activeMissions = [
+﻿export const activeMissions = [
   {
-    id: "nav",
-    title: "NAV",
-    tagline: "Digital Companion & Intelligence System",
-    description: "Personalized intelligence layer for seamless human-AI interaction.",
-    tech: ["Python", "FastAPI", "OpenAI SDK", "Ollama"],
-    status: "ACTIVE — Companion",
-    github: "https://github.com/raghavendrashivam474/nav"
+    id: "nomad",
+    title: "Nomad",
+    tagline: "Mobile-First Development Lab",
+    description: "Mobile-first development lab for building real web and Android applications from phone, tablet, or desktop, powered by lightweight local workflows and on-demand compute.",
+    tech: ["Dart", "Flutter", "Android", "Lightweight Compute"],
+    status: "ACTIVE — Lab",
+    github: "https://github.com/raghavendrashivam474/nomad"
   },
   {
-    id: "straloc",
-    title: "Aryntra Straloc",
-    tagline: "Software Evolution Intelligence",
-    description: "Evolutionary intelligence layer: Observe → Detect → Reason. Currently: Observe.",
-    tech: ["Rust", "Intelligence Models", "System Observability"],
-    status: "ACTIVE — Observe",
-    github: "https://github.com/raghavendrashivam474/aryntra-straloc"
-  },
-  {
-    id: "flux",
-    title: "Aryntra Flux",
-    tagline: "High-Performance Data Orchestration",
-    description: "Event-driven architecture primitive for systemic data flow.",
-    tech: ["Go", "TCP", "Distributed Systems"],
-    status: "ACTIVE — Flow",
-    github: "https://github.com/raghavendrashivam474/aryntra-flux"
+    id: "workgrid",
+    title: "Workgrid",
+    tagline: "Local-First Enterprise Asset Management",
+    description: "Local-first employee and asset management platform built with the .NET ecosystem for seamless offline-first operations.",
+    tech: ["C#", ".NET", "SQLite", "Enterprise Architecture"],
+    status: "ACTIVE — Platform",
+    github: "https://github.com/raghavendrashivam474/WorkGrid"
   }
 ];
 
 export const otherSystems = [
-  { id: "anveksha", title: "Anveksha", tagline: "Health Screening Platform", status: "PREVIOUS", tech: "Python · FastAPI", github: "https://github.com/raghavendrashivam474/Aryntra_Anveksha" },
-  { id: "aayaam", title: "Aayaam", tagline: "Developer CLI Awareness", status: "PREVIOUS", tech: "Go · CLI Architecture", github: "https://github.com/raghavendrashivam474/aryntra-aayaam" },
-  { id: "tarka", title: "Tarka", tagline: "Local-First AI Agent", status: "PREVIOUS", tech: "FastAPI · Ollama", github: "https://github.com/raghavendrashivam474/aryntra-tarka" },
-  { id: "kavach", title: "Kavach", tagline: "AI Security Gateway", status: "PREVIOUS", tech: "Python · Cryptography", github: "https://github.com/raghavendrashivam474/Aryntra-Kavach" },
-  { id: "syaahi", title: "Syaahi", tagline: "Poetry platform", status: "PREVIOUS", tech: "Flutter · Node.js", github: "https://github.com/raghavendrashivam474/syaahi" },
-  { id: "devvault", title: "Dev-Vault", tagline: "Resource organization", status: "PREVIOUS", tech: "Vanilla JS", github: "https://github.com/raghavendrashivam474/dev-vault" },
-  { id: "backtrace", title: "Backtrace", tagline: "Error tracing", status: "PREVIOUS", tech: "Python", github: "https://github.com/raghavendrashivam474/Aryntra-Backtrace" },
-  { id: "gradeflow", title: "GradeFlow", tagline: "Academic analytics", status: "PREVIOUS", tech: "React · Supabase", github: "https://github.com/raghavendrashivam474/GradeFlow" }
+  {
+    id: "syaahi",
+    title: "Syaahi",
+    tagline: "Platform for poetry, letters, journals, and human expression",
+    status: "SUPPORTING",
+    tech: "Dart · Flutter · Node.js",
+    github: "https://github.com/raghavendrashivam474/syaahi",
+    kind: "SUPPORTING"
+  },
+  {
+    id: "shyam",
+    title: "Shyam",
+    tagline: "Local-first, decentralized personal computing ecosystem & orchestration layer",
+    status: "SUPPORTING",
+    tech: "Python · Distributed Systems",
+    github: "https://github.com/raghavendrashivam474/shyam",
+    kind: "SUPPORTING"
+  }
 ];
