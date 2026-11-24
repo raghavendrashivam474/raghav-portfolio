@@ -1,54 +1,57 @@
-export const currentStack = [
+﻿export const currentStack = [
   {
     id: "01",
     category: "Languages",
     items: [
-      { name: "Python", evidence: ["NAV", "Research Lab"] },
-      { name: "Rust", evidence: ["Aryntra Straloc"] },
-      { name: "TypeScript", evidence: ["Portfolio", "Web Systems"] },
-      { name: "Go", evidence: ["Aryntra Flux", "Aryntra Aayaam"] },
-      { name: "C++", evidence: ["Systems Foundations"] }
+      { name: "Dart", evidence: ["Nomad", "Syaahi"] },
+      { name: "Python", evidence: ["Aryntra Synapse", "Shyam"] },
+      { name: "C#", evidence: ["Workgrid"] },
+      { name: "TypeScript", evidence: ["Syaahi Backend"] },
+      { name: "SQL", evidence: ["Nomad", "Workgrid", "Syaahi"] }
     ]
   },
   {
     id: "02",
     category: "Build",
     items: [
-      { name: "React", evidence: ["Portfolio", "Tarka"] },
-      { name: "Next.js", evidence: ["Anveksha"] },
-      { name: "FastAPI", evidence: ["NAV", "Anveksha", "Tarka"] },
-      { name: "Node.js", evidence: ["Tooling"] },
-      { name: "Vite", evidence: ["Portfolio", "Tarka"] }
+      { name: "Flutter", evidence: ["Nomad", "Syaahi"] },
+      { name: ".NET 8", evidence: ["Workgrid"] },
+      { name: "FastAPI", evidence: ["Aryntra Synapse", "Shyam"] },
+      { name: "Express.js", evidence: ["Syaahi Backend"] },
+      { name: "Node.js", evidence: ["Syaahi Backend"] }
     ]
   },
   {
     id: "03",
     category: "Data",
     items: [
-      { name: "PostgreSQL", evidence: ["Flux Persistence"] },
-      { name: "SQLite", evidence: ["Tarka", "Local Memory"] },
-      { name: "Supabase", evidence: ["GradeFlow"] },
-      { name: "Vector Indexing", evidence: ["NAV Memory", "Synapse"] }
+      { name: "SQLite", evidence: ["Nomad", "Workgrid", "Syaahi"] },
+      { name: "EF Core", evidence: ["Workgrid"] },
+      { name: "Prisma", evidence: ["Syaahi Backend"] },
+      { name: "FAISS", evidence: ["Aryntra Synapse"] },
+      { name: "Supabase", evidence: ["Syaahi Backend"] }
     ]
   },
   {
     id: "04",
     category: "AI",
     items: [
-      { name: "OpenAI SDK", evidence: ["NAV", "Anveksha"] },
-      { name: "Ollama", evidence: ["NAV", "Tarka", "Anveksha"] },
-      { name: "RAG", evidence: ["Knowledge Retrieval"] },
-      { name: "AI Agents", evidence: ["Tarka", "Autonomy Research"] }
+      { name: "RAG Pipelines", evidence: ["Aryntra Synapse"] },
+      { name: "Vector Indexing", evidence: ["Aryntra Synapse"] },
+      { name: "Transformers", evidence: ["Aryntra Synapse"] },
+      { name: "Ollama", evidence: ["Aryntra Synapse"] },
+      { name: "NetworkX", evidence: ["Aryntra Synapse"] }
     ]
   },
   {
     id: "05",
     category: "Systems & Tooling",
     items: [
-      { name: "Docker", evidence: ["Deployment", "Kavach"] },
-      { name: "Git & GitHub", evidence: ["All Codebases"] },
-      { name: "REST APIs", evidence: ["NAV", "Flux"] },
-      { name: "CLI Architecture", evidence: ["Aayaam", "Straloc"] }
+      { name: "Local-First Architecture", evidence: ["Nomad", "Workgrid", "Syaahi", "Shyam"] },
+      { name: "REST APIs", evidence: ["Workgrid", "Aryntra Synapse", "Syaahi", "Shyam"] },
+      { name: "Cryptography", evidence: ["Shyam"] },
+      { name: "CLI Tooling", evidence: ["Shyam"] },
+      { name: "Git & GitHub", evidence: ["All Flagships"] }
     ]
   }
 ]
