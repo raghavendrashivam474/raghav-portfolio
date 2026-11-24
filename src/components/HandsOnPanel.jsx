@@ -1,10 +1,10 @@
-import { useEffect, useRef, useCallback, useState } from 'react'
+﻿import { useEffect, useRef, useCallback, useState } from 'react'
 import { currentStack } from '../data/handsOn'
 
 export default function HandsOnPanel({ isOpen, onClose }) {
   const panelRef = useRef(null)
   const closeBtnRef = useRef(null)
-  
+
   // Tracks which technology is currently expanded to show evidence
   const [activeTech, setActiveTech] = useState(null)
 
@@ -112,11 +112,10 @@ export default function HandsOnPanel({ isOpen, onClose }) {
             aria-hidden="true"
           />
 
-          {/* Typographic Stream Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 relative z-10">
+          {/* Typographic Stream Grid (6 Responsive Categories) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-10 sm:gap-y-12 relative z-10">
             {currentStack.map((group) => {
               const hasActiveInGroup = group.items.some(i => i.name === activeTech)
-
               return (
                 <div key={group.category} className="flex flex-col">
                   {/* Structural Category Header */}
@@ -128,18 +127,17 @@ export default function HandsOnPanel({ isOpen, onClose }) {
                       {group.category}
                     </h4>
                   </div>
-                  
+
                   {/* Inline Typographic Nodes Separated by Dots */}
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                     {group.items.map((item, idx) => {
                       const isSelected = activeTech === item.name
-
                       return (
                         <div key={item.name} className="flex items-center gap-3">
                           <button
                             type="button"
                             onClick={() => setActiveTech(isSelected ? null : item.name)}
-                            className={`text-[1.1rem] sm:text-[1.25rem] font-medium tracking-tight transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-copper/50 rounded-sm px-1.5 -mx-1.5 ${
+                            className={`text-[1.05rem] sm:text-[1.2rem] font-medium tracking-tight transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-copper/50 rounded-sm px-1.5 -mx-1.5 cursor-pointer ${
                               isSelected
                                 ? 'text-oxide bg-slate/70'
                                 : 'text-ivory hover:text-copper hover:bg-slate/30'
@@ -147,7 +145,7 @@ export default function HandsOnPanel({ isOpen, onClose }) {
                           >
                             {item.name}
                           </button>
-                          
+
                           {/* Separator Dot (Hidden for the last item in the array) */}
                           {idx < group.items.length - 1 && (
                             <span className="text-border/80 select-none text-lg" aria-hidden="true">
@@ -159,28 +157,33 @@ export default function HandsOnPanel({ isOpen, onClose }) {
                     })}
                   </div>
 
-                  {/* Inset Evidence Drawer (Renders below the whole paragraph if a child is active) */}
+                  {/* Inset Evidence Drawer */}
                   <div
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      hasActiveInGroup ? 'max-h-48 opacity-100 mt-5' : 'max-h-0 opacity-0 mt-0'
+                      hasActiveInGroup ? 'max-h-52 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'
                     }`}
                   >
                     {group.items
                       .filter((i) => i.name === activeTech)
                       .map((activeItem) => (
-                        <div key={activeItem.name + "-evidence"} className="pl-4 border-l-[1.5px] border-copper/50 bg-obsidian/30 py-3.5 pr-4 rounded-r-md shadow-inner">
-                          <div className="flex items-center justify-between mb-3">
+                        <div key={activeItem.name + "-evidence"} className="pl-4 border-l-[1.5px] border-copper/50 bg-obsidian/40 py-3 pr-4 rounded-r-md shadow-inner">
+                          <div className="flex items-center justify-between mb-2">
                             <span className="block text-[10px] font-mono uppercase tracking-widest text-ash">
-                              Currently used in
+                              {activeItem.note ? "Capability Note" : "Evidence & Context"}
                             </span>
                             <span className="text-[10px] font-mono text-copper/80 bg-copper/10 px-2 py-0.5 rounded border border-copper/30">
-                              {activeItem.evidence.length} {activeItem.evidence.length === 1 ? 'repo' : 'repos'}
+                              {activeItem.evidence.length} {activeItem.evidence.length === 1 ? 'item' : 'items'}
                             </span>
                           </div>
-                          <ul className="space-y-2">
+                          {activeItem.note && (
+                            <p className="text-xs font-mono text-copper mb-2">
+                              {activeItem.note}
+                            </p>
+                          )}
+                          <ul className="space-y-1.5">
                             {activeItem.evidence.map((repo) => (
-                              <li key={repo} className="text-sm text-stone font-sans flex items-center gap-2.5">
-                                <span className="w-1 h-1 rounded-full bg-border" aria-hidden="true" />
+                              <li key={repo} className="text-xs sm:text-sm text-stone font-sans flex items-center gap-2.5">
+                                <span className="w-1 h-1 rounded-full bg-copper/60" aria-hidden="true" />
                                 {repo}
                               </li>
                             ))}
@@ -188,7 +191,6 @@ export default function HandsOnPanel({ isOpen, onClose }) {
                         </div>
                     ))}
                   </div>
-
                 </div>
               )
             })}
@@ -198,8 +200,8 @@ export default function HandsOnPanel({ isOpen, onClose }) {
         {/* 3. FIXED FOOTER */}
         <footer className="shrink-0 px-6 sm:px-10 py-5 border-t border-border/60 bg-graphite/90 text-center sm:text-left">
           <p className="text-xs sm:text-sm font-mono tracking-wide text-ash flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <span>A working stack, not a list of everything I&apos;ve ever touched.</span>
-            <span className="text-copper/60 text-[10px] uppercase tracking-widest">S10 Architecture</span>
+            <span>A working stack, not a list of everything I&apos;ve ever touched. <span className="text-copper/70 ml-2">*Rust: developing capability</span></span>
+            <span className="text-copper/60 text-[10px] uppercase tracking-widest">Resume v2.2 Synced</span>
           </p>
         </footer>
       </section>
